@@ -106,7 +106,7 @@
 
 			var now = new Date();
 			var hour = now.getHours();
-			if (hour >= 17 && hour < 20) {
+			if (hour >= 8 && hour < 9) {
   				document.getElementById("pageblock").style.display = "none";
 			} else {
   				document.getElementById("pageblock").style.display = "flex";
