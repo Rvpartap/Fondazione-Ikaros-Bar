@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="theme-color" content="#ff7c00" />
+		<title>Account Edit Page - Fondazione Ikaros Bar</title>
+		<link rel="shortcut icon" href="{{ url("/images/Site-Favicons/favicon.png") }}" />
+      <link rel="stylesheet" type="text/css" href="{{ url("/lib/Dancing-Script/font.css") }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/bootstrap-5.2.3/css/bootstrap.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/fontawesome-6.2.0/css/all.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/animate.style-4.1.1/animate.min.css") }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url("/css/edit_style.css") }}" />
+   </head>
+   <body class="container">
+		<button onclick="location.href='/home'" id="goback" title="Back to Menù" class="animate__animated animate__fadeInLeft">&#160;<i class="fa-solid fa-reply fa-lg"></i>&#160;&#160;</button>
+		<button onclick="location.href='/'" id="gohome" title="Back To Home" class="animate__animated animate__fadeInRight">&#160;&#160;<i class="fa-solid fa-house-chimney fa-lg"></i>&#160;</button>
+		<center>
+   		<img src="/images/Logo/fondazioneikaros-logo.svg" class="logo animate__animated animate__fadeInUp" draggable="false" />
+		</center>
+		<br>
+		<div class="modal modal-signin position-static d-block py-4 animate__animated animate__fadeInUp" tabindex="-1" role="LoginForm" id="modalLogin">
+			<div class="modal-dialog" role="document">
+    			<div class="modal-content rounded-4 shadow">
+      			<div class="modal-header p-5 pb-4 border-bottom-0">
+        				<h6 class="fw-bold mb-0 font-size"><img src="/images/Site-Favicons/favicon.png" class="mini-logo" draggable="false" />&#160;Modifica e Aggiorna i Dati dell'Account</h6>
+      			</div>
+      			<div class="modal-body p-5 pt-0">
+        				<form method="patch" action="">
+							<div class="form-floating mb-3">
+         					<input type="text" class="form-control rounded-3" id="name" placeholder="Cognome e Nome" name="name" value="Rathour Vinay Partap Singh" disabled="true" />
+            				<label for="name">&#160;<i class="fa-solid fa-user"></i> &#160; Cognome e Nome</label>
+         				</div>
+          				<div class="form-floating mb-3">
+            				<input type="email" class="form-control rounded-3" id="email" placeholder="name@example.com" name="email" value="vinay.rathour@stu.fondazioneikaros.org" disabled="true" />
+            				<label for="email">&#160;<i class="fa-solid fa-at"></i> &#160; Indirizzo Email</label>
+          				</div>
+          				<div class="form-floating mb-3">
+         					<select class="form-control form-select rounded-3" id="classe" name="classe">
+  									<option value="4 Informatica B">4 Informatica B</option>
+  									<!-- Le Prime -->
+		  							<option value="1 Informatica A">1 Informatica A</option>
+  									<option value="1 Informatica B">1 Informatica B</option>
+  									<option value="1 Impresa A">1 Impresa A</option>
+  									<option value="1 Impresa B">1 Impresa B</option>
+  									<option value="1 Logistica A">1 Logistica A</option>
+		  							<option value="1 Logistica B">1 Logistica B</option>
+  									<option value="1 Elettrico A">1 Elettrico A</option>
+	  								<option value="1 Elettrico B">1 Elettrico B</option>
+	  								<option value="1 Ristorazione A">1 Ristorazione A</option>
+		  							<option value="1 Ristorazione B">1 Ristorazione B</option>
+		  							<option value="1 Estetica A">1 Estetica A</option>
+		  							<option value="1 Estetica B">1 Estetica B</option>
+		  							<option value="1 Acconciatura A">1 Acconciatura A</option>
+			  						<option value="1 Acconciatura B">1 Acconciatura B</option>
+			  						<!-- Le Seconde -->
+									<option value="2 Informatica A">2 Informatica A</option>
+		  							<option value="2 Informatica B">2 Informatica B</option>
+									<option value="2 Impresa A">2 Impresa A</option>
+	  								<option value="2 Impresa B">2 Impresa B</option>
+			  						<option value="2 Logistica A">2 Logistica A</option>
+			  						<option value="2 Logistica B">2 Logistica B</option>
+			  						<option value="2 Elettrico A">2 Elettrico A</option>
+  									<option value="2 Elettrico B">2 Elettrico B</option>
+  									<option value="2 Ristorazione A">2 Ristorazione A</option>
+  									<option value="2 Ristorazione B">2 Ristorazione B</option>
+  									<option value="2 Estetica A">2 Estetica A</option>
+  									<option value="2 Estetica B">2 Estetica B</option>
+  									<option value="2 Acconciatura A">2 Acconciatura A</option>
+  									<option value="2 Acconciatura B">2 Acconciatura B</option>  					
+									<!-- Le Terze -->
+  									<option value="3 Informatica A">3 Informatica A</option>
+  									<option value="3 Informatica B">3 Informatica B</option>
+  									<option value="3 Impresa A">3 Impresa A</option>
+  									<option value="3 Impresa B">3 Impresa B</option>
+  									<option value="3 Logistica A">3 Logistica A</option>
+  									<option value="3 Logistica B">3 Logistica B</option>
+  									<option value="3 Elettrico A">3 Elettrico A</option>
+  									<option value="3 Elettrico B">3 Elettrico B</option>
+  									<option value="3 Ristorazione A">3 Ristorazione A</option>
+  									<option value="3 Ristorazione B">3 Ristorazione B</option>
+									<option value="3 Estetica A">3 Estetica A</option>
+  									<option value="3 Estetica B">3 Estetica B</option>
+  									<option value="3 Acconciatura A">3 Acconciatura A</option>
+  									<option value="3 Acconciatura B">3 Acconciatura B</option>
+  									<!-- Le Quarte -->
+  									<option value="4 Informatica A">4 Informatica A</option>
+  									<option value="4 Informatica B">4 Informatica B</option>
+  									<option value="4 Impresa A">4 Impresa A</option>
+  									<option value="4 Impresa B">4 Impresa B</option>
+ 									<option value="4 Logistica A">4 Logistica A</option>
+ 									<option value="4 Logistica B">4 Logistica B</option>
+  									<option value="4 Elettrico A">4 Elettrico A</option>
+  									<option value="4 Elettrico B">4 Elettrico B</option>
+  									<option value="4 Ristorazione A">4 Ristorazione A</option>
+  									<option value="4 Ristorazione B">4 Ristorazione B</option>
+  									<option value="4 Estetica A">4 Estetica A</option>
+  									<option value="4 Estetica B">4 Estetica B</option>
+  									<option value="4 Acconciatura A">4 Acconciatura A</option>
+  									<option value="4 Acconciatura B">4 Acconciatura B</option>
+  									<!-- Le Quinte -->
+									<option value="5 Informatica A">5 Informatica A</option>
+									<option value="5 Informatica B">5 Informatica B</option>
+  									<option value="5 Impresa A">5 Impresa A</option>
+  									<option value="5 Impresa B">5 Impresa B</option>
+  									<option value="5 Logistica A">5 Logistica A</option>
+  									<option value="5 Logistica B">5 Logistica B</option>
+  									<option value="5 Elettrico A">5 Elettrico A</option>
+  									<option value="5 Elettrico B">5 Elettrico B</option>
+  									<option value="5 Ristorazione A">5 Ristorzione A</option>
+  									<option value="5 Ristorazione B">5 Ristorazione B</option>
+  									<option value="5 Estetica A">5 Estetica A</option>
+  									<option value="5 Estetica B">5 Estetica B</option>
+  									<option value="5 Acconciatura A">5 Acconciatura A</option>
+  									<option value="5 Acconciatura B">5 Acconciatura B</option>
+  									<!-- Staff -->
+  									<option value="Fondazione Ikaros Staff">Fondazione Ikaros Staff</option>
+								</select>
+								<label for="classe">&#160;<i class="fa-solid fa-school"></i> &#160; Modifica la tua Classe</label>
+							</div>
+							<div class="form-floating mb-3">
+    							<input type="text" class="form-control rounded-3" id="password" name="password" value="$2y$10$AODhYsQrRVwbvrNZNu896OmmC0pvgQPB/AFkj2X9k0w3cTYlfPnJq" placeholder="Password"/>
+    							<label for="password">&#160;<i class="fa-solid fa-key"></i> &#160; Modifica la tua Password</label>
+							</div>
+          				<button class="mb-3 w-100 btn btn-lg rounded-3 btn-primary" type="submit">Aggiorna l'account</button>
+  			 				@if(session()->get('completed'))
+            				<div class="alert alert-success">
+                				<div><i class="fa-solid fa-thumbs-up"></i>&#160; {{ session()->get('completed') }}</div>
+           					</div>
+        					@endif
+  			 				<p style="font-size: 15px; margin-bottom: 0;"><i class="fa-solid fa-bell fa-shake mt-3"></i>&#160; NOTE: In questa pagina hai il diritto solo di modificare la tua <span class="badge bg-primary">CLASSE</span> e la tua <span class="badge bg-primary">PASSWORD</span>. Non è possibile modificare il proprio <u>Cognome e Nome</u> e <u>Email</u>. Se il tuo <u>Cognome e Nome</u> è scritto sbagliato, inviaci un'email cliccando <kbd><a href="/contact#supportform" style="color: white; text-decoration: none;">qui</a></kbd>.</p>
+        				</form>
+      			</div>
+   			</div>
+			</div>
+		</div>
+		<p class="text-center tos">Dai un'occhiata alla pagina <a href="https://www.fondazioneikaros.org/privacy-e-cookie-policy/" class="link-decoration"><u>Privacy e Cookie Policy</u></a></p>
+		<p class="text-center credits"><i class="fa-regular fa-copyright"></i> <a href="/" class="link-decoration">Fondazione Ikaros Bar</a> - Progettato e codificato da <a href="https://www.artglobal.it" target="_blank" class="link-decoration">Artglobal.it</a> & <a href="https://linktr.ee/rvpartap" target="_blank" class="link-decoration" >Rathour Vinay</a></p>
+		<!-- JavaScript -->
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script src="/lib/bootstrap-5.2.3/js/bootstrap.min.js" type="text/javascript"></script>		
+		<script src="/lib/fontawesome-6.2.0/js/all.min.js" type="text/javascript"></script>		
+	</body>
+</html>

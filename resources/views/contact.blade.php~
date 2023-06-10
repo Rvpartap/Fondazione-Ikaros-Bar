@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="theme-color" content="#ff7c00" />
+		<meta name="description" content="Eat Good Feel Good :)" />
+    	<meta name="keywords" content="Fondazione, Ikaros, Bar, Attività, Studenti, Calcio, Scuola, Superiore" />
+    	<meta name="author" content="Vinay Rathour" />
+		<title>Contact Page - Fondazione Ikaros Bar</title>
+		<link rel="shortcut icon" href="{{ url("/images/Site-Favicons/favicon.png") }}" />
+      <link rel="stylesheet" type="text/css" href="{{ url("/lib/Dancing-Script/font.css") }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/bootstrap-5.2.3/css/bootstrap.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/fontawesome-6.2.0/css/all.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/animate.style-4.1.1/animate.min.css") }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url("/css/contact_style.css") }}" />
+   </head>
+   <body class="container">
+   	<!-- Scroll Indicator -->
+   	<style type="text/css">
+   		.scroll-indicator {
+  				position: fixed;
+  				top: 0;
+  				left: 0;
+  				width: 100%;
+  				height: 10px;
+  				background-color: #000000;
+  				overflow: hidden;
+  				z-index: 99;
+			}
+
+			.progress-bar {
+  				width: 0;
+  				height: 10px;
+  				background-color: #ff7c00;
+  				transition: width 0.3s ease;
+  				border-bottom: 2px solid black;
+  				border-top: 2px solid black;
+			}
+   	</style>
+   	
+   	<div class="scroll-indicator">
+  			<div class="progress-bar"></div>
+		</div>
+		
+		<script type="text/javascript" >
+			window.addEventListener('scroll', function() {
+  				var scrollIndicator = document.querySelector('.progress-bar');
+  				var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  				var progress = (window.pageYOffset / maxScroll) * 100;
+  				scrollIndicator.style.width = progress + '%';
+  				scrollIndicator.style.position = 'fixed';
+			});
+		</script>
+		<!-- Side Navigation Bar -->
+		<span id="burger" onclick="openNav()" class="animate__animated animate__fadeInRight">&#160;&#160;<i class="fa-solid fa-bars fa-lg"></i>&#160;&#160;</span>
+		<div id="home-nav" class="home-navigation">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark fa-lg"></i></a>
+   		<img class="second-logo" src="/images/Logo/ikaros-second-logo.png" draggable="false" alt="fondazioneikaros">
+   		<a href="/">Pagina Home</a>
+   		@if (Route::has('login'))
+         	@auth
+            	<a href="{{ url('/home') }}">Entra nell'area privata</a>
+            @else
+               <a href="{{ route('login') }}">Accedi per ordinare</a>
+				@endauth
+         @endif	
+   		<a href="/contact">Informazioni e contatti</a>
+   		<hr>
+ 			<a href="https://www.fondazioneikaros.org/dona-sostieni-la-fondazione/"><i class="fa-solid fa-hand-holding-heart"></i>&#160; Sostieni la Fondazione</a>
+   		<a href="https://www.fondazioneikaros.org/blog/"><i class="fa-solid fa-rss"></i>&#160; News & Blog</a>
+			<hr>
+   		<a href="https://www.fondazioneikaros.org/" class="text-nav-fav"><img src="/images/Site-Favicons/favicon.png" draggable="false" alt="FondazioneIkarosLogo" class="img-favicon1"> Fondazione Ikaros</a>
+   		<a href="https://www.istitutopolitecnico.org/" class="text-nav-fav"><img src="/images/Site-Favicons/favicon-istitutopolitecnico.png" draggable="false" alt="IstitutoPolitecnicoLogo" class="img-favicon2"> Istituto Politecnico</a>
+			<hr>
+			<div class="imp-note">
+				<p>Avviso per i Talenti e Insegnanti: </p>
+				<p>É vietato condividere le vostre informazioni relative a questo sito con qualcuno. Grazie!</p>
+			</div>
+			<hr>
+			<a href="/admin/home" target="_blank" style="font-size: 13px; color: #0088ff; width: 300px; margin-bottom: 12px;"><i class="fa-solid fa-gavel fa-lg"></i> &#160; Area riservata per gli Amministratori</a>
+		</div>
+		<!-- Pagina Centrale -->
+		<div class="container">
+			<div class="bg-space">
+				<img src="/images/svg/layered-peaks-head-of-contact.svg" alt="head-Image" draggable="false" class="head-image" />
+				<div class="animate__animated animate__fadeIn animate__delay-1s container-sm col-xxl-8 px-4 pt-0">
+    				<div class="row flex-lg-row-reverse align-items-center g-5 pt-5">
+      				<div class="delay-1s col-10 col-sm-8 col-lg-6">
+        					<img src="/images/Background-Pictures/foto-sede-ikaros.png" class="d-block mx-lg-auto img-fluid shadow-lg img-ikaros" alt="foto-sede-ikaros" width="700" height="500">
+      				</div>
+      				<div class="col-lg-6">
+        					<h4 class="display-6 fw-bold lh-1 my-3">Informazioni di Contatto</h4>
+        					<p style="font-size: 1.20rem;"><i class="fa-solid fa-location-dot"></i>&#160; <strong>Indirizzo:</strong> <a href="https://goo.gl/maps/WrMHSfmh7MB7cPAW9" target="_blank" class="link-decoration">Via Avis Aido, snc - 24054 Calcio (BG)</a></p>
+							<p style="font-size: 1.20rem;"><i class="fa-solid fa-phone"></i>&#160; <strong>Chiamaci:</strong> <a href="tel:0363968208" target="_blank" class="link-decoration">0363 968208</a></p>
+							<p style="font-size: 1.20rem;"><i class="fa-solid fa-fax"></i>&#160; <strong>Fax:</strong> <a href="fax:03631802054" target="_blank" class="link-decoration">0363 1802054</a></p>
+							<p style="font-size: 1.20rem;"><i class="fa-solid fa-envelope"></i>&#160; <strong>Email:</strong> <a href="mailto:info@fondazioneikaros.org" target="_blank" class="link-decoration">info@fondazioneikaros.org</a></p>
+							<p style="font-size: 1.20rem;" class="mb-0"><i class="fa-solid fa-globe"></i>&#160; <strong>Sito Web:</strong> <a href="https://www.fondazioneikaros.org/" target="_blank" class="link-decoration">FondazioneIkaros.org</a></p>
+      				</div>
+    				</div>
+  				</div>
+  				<hr class="mx-auto" style="border: 2px solid black; opacity: 100; max-width: 85%; margin-top: 4rem; margin-bottom: 4rem;">
+				<div class="container-md" style="max-width: 80%">
+					<div class="px-2">
+						<div class="row mb-2 text-center animate__animated animate__fadeIn animate__delay-1s">
+      					<div class="col themed-grid-col animate__animated animate__fadeIn animate__delay-1s text-break" style="font-size: 25px"><strong>Orario Segreteria della Fondazione Ikaros Calcio (BG)</strong></div>
+    					</div>
+    				</div>
+    				<div class="col px-2 animate__animated animate__fadeIn animate__delay-1s">
+    					<div class="row text-center animate__animated animate__fadeIn animate__delay-1s mb-2">
+      					<div class="col themed-grid-col me-1 fw-bold" style="font-size: 20px">Giorni</div>
+      					<div class="col themed-grid-col ms-1 fw-bold" style="font-size: 20px">Orari</div>
+    					</div>
+    					<div class="row text-center animate__animated animate__fadeIn animate__delay-1s mb-2">
+							<div class="col themed-grid-col me-1 fw-bold" style="font-size: 18px">Lunedì</div>
+      					<div class="col themed-grid-col ms-1" style="font-size: 18px">8:00 - 17:00</div>
+     					</div>
+     					<div class="row text-center animate__animated animate__fadeIn animate__delay-1s mb-2">
+							<div class="col themed-grid-col me-1 fw-bold" style="font-size: 18px">Martedì</div>
+      					<div class="col themed-grid-col ms-1" style="font-size: 18px">8:00 - 14:00</div>
+     					</div>
+     					<div class="row text-center animate__animated animate__fadeIn animate__delay-1s mb-2">
+							<div class="col themed-grid-col me-1 fw-bold" style="font-size: 18px">Mercoledì</div>
+      					<div class="col themed-grid-col ms-1" style="font-size: 18px">8:00 - 17:00</div>
+     					</div>
+     					<div class="row text-center animate__animated animate__fadeIn animate__delay-1s mb-2">
+							<div class="col themed-grid-col me-1 fw-bold" style="font-size: 18px">Giovedì</div>
+      					<div class="col themed-grid-col ms-1" style="font-size: 18px">8:00 - 17:00</div>
+     					</div>
+     					<div class="row text-center animate__animated animate__fadeIn animate__delay-1s mb-2">
+							<div class="col themed-grid-col me-1 fw-bold" style="font-size: 18px">Venerdì</div>
+      					<div class="col themed-grid-col ms-1" style="font-size: 18px">8:00 - 14:00</div>
+     					</div>
+     					<div class="row text-center animate__animated animate__fadeIn animate__delay-1s mb-2">
+							<div class="col themed-grid-col me-1 fw-bold" style="font-size: 18px">Sabato</div>
+      					<div class="col themed-grid-col ms-1" style="font-size: 18px">9:00 - 12:00</div>
+     					</div>
+     					<div class="row text-center animate__animated animate__fadeIn animate__delay-1s mb-2">
+							<div class="col themed-grid-col me-1 fw-bold" style="font-size: 18px">Domenica</div>
+      					<div class="col themed-grid-col ms-1" style="font-size: 18px">Chiuso</div>
+     					</div>
+     				</div>
+				</div> 
+				<hr class="mx-auto" style="border: 2px solid black; opacity: 100; max-width: 85%; margin-top: 4rem; margin-bottom: 4rem;">
+				<div class="container col-xl-10 col-xxl-10 px-4" id="supportform">
+    				<div class="row align-items-center g-lg-5">
+      				<div class="animate__animated animate__fadeIn animate__delay-1s col-md-10 mx-auto col-lg-8">
+							<form class="p-4 p-md-5 border rounded-4 bg-light shadow-lg" method="POST" action="/contact" onsubmit="enableButton()">
+								{{ csrf_field() }}
+								<h4 class="text-start pb-0 text-break mb-0" align="justify">Hai bisogno di assistenza? Scrivici senza esitare! &#160;<img src="https://em-content.zobj.net/source/microsoft-teams/337/smiling-face_263a-fe0f.png" alt="happy face" style="width: 35px; margin-bottom: 8px; pointer-events: none;" /></h4>
+								<p class="pb-2 text-break" style="font-size: .875em;" align="justify">In questo modulo di contatto ci puoi scrivere qualunque problema che riscontri nel sito. Se hai consigli, domande o segnalare qualcosa relativo al tuo account, scrivici senza esitare!</p>
+								<div class="row">
+								   <input type="hidden" name="recaptcha" id="recaptcha">          		
+          						<div class="col-md-6">
+          							<div class="form-floating mb-3">
+         								<input type="text" class="form-control rounded-4" id="name" name="name" placeholder="Cognome e Nome" required="true">
+            							<label for="name">&#160;<i class="fa-solid fa-user"></i> &#160; Cognome e Nome<i style="color: red">*</i></label>
+         							</div>
+          						</div>
+          						<div class="col-md-6">
+          							<div class="form-floating mb-3">
+            							<input type="email" class="form-control rounded-4" id="email" name="email" placeholder="name@example.com" required="true">
+            							<label for="email">&#160;<i class="fa-solid fa-at"></i> &#160; Indirizzo Email<i style="color: red">*</i></label>
+          							</div>
+          						</div>
+          						<div class="col-md-6">
+          							<div class="form-floating mb-3">
+         								<input type="text" class="form-control rounded-4" id="location" name="location" placeholder="Città/Stato" required="true">
+            							<label for="location">&#160;<i class="fa-solid fa-map-location-dot"></i> &#160; Città / Stato<i style="color: red">*</i></label>
+         							</div>
+          						</div>
+          						<div class="col-md-6">
+          							<div class="form-floating mb-3">
+            							<input type="tel" class="form-control rounded-4" id="number" name="number" placeholder="000 000 0000" maxlength="10" required="true">
+            							<label for="number">&#160;<i class="fa-solid fa-phone"></i> &#160; Numero di telefono<i style="color: red">*</i></label>
+          							</div>
+          						</div>
+        						</div>
+        						<div class="form-floating mb-3">
+  									<input type="text" class="form-control rounded-4" id="subject" name="subject" placeholder="Soggetto" required="true">
+            					<label for="subject">&#160;<i class="fa-solid fa-pen-clip"></i> &#160; Argomento / Soggetto<i style="color: red">*</i></label>
+         					</div>
+          					<div class="form-floating mb-3">
+  									<textarea class="form-control rounded-4" id="message" name="message" placeholder="Messaggio" style="height: 120px;" rows="4" spellcheck="true" required="true"></textarea>
+  									<label for="message">&#160;<i class="fa-solid fa-comment"></i> &#160; Messaggio<i style="color: red">*</i></label>
+          					</div>
+          					<div class="form-check mb-3">
+  									<input class="form-check-input" type="checkbox" id="tos" name="tos" required="true">
+  									<label class="form-check-label" for="tos">Ho preso visione e accetto la <a href="https://www.fondazioneikaros.org/privacy-e-cookie-policy/" class="link-decoration"><u>Privacy e Cookie Policy</u></a><i style="color: red">*</i></label>
+		  	 					</div>
+		  	 					<div class="form-floating space-bottom">
+		  	 						<p><i class="fa-solid fa-robot"></i>&#160;Verifica che non sei un <a href="https://developer.mozilla.org/en-US/docs/Glossary/Distributed_Denial_of_Service" class="link-decoration"><u>Bot</u></a> spostando la pallina da sinistra a destra:<i style="color: red">*</i></p>
+									<input type="range" class="form-range" id="myRange" name="range" min="0" max="100" value="0" required="true" />
+								</div>
+          					<button class="w-100 btn btn-lg btn-primary rounded-4" type="submit" id="sendButton" value="submit">Invia</button>
+								<div id="requestsuccess" class="mb-0"></div>          					
+          					<br><br>
+          					<div class="container" style="margin-top: -25px;">
+									@if(session('message'))
+  										<div class="alert alert-success alert-dismissible fade show" role="alert">
+  											<div><i class="fa-solid fa-thumbs-up"></i>&#160; {{ session('message') }}</div>
+  											<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  										</div>
+									@endif
+									@if($errors->any())
+      								<div class="alert alert-danger">
+          								<ul>
+          									@foreach ($errors->all() as $error)
+              									<li>{{ $error }}</li>
+          									@endforeach
+         								</ul>
+      								</div>
+									@endif			
+          					</div>
+          					<small><i class="fa-solid fa-bell fa-shake"></i>&#160; NOTE: Ingressi con simbolo <b style="color: red">*</b> non possono essere vuoti.</small>
+        					</form>	
+	   				</div>
+    				</div> 		
+  				</div>
+  				<hr class="mx-auto" style="border: 2px solid black; opacity: 100; max-width: 85%; margin-top: 4rem; margin-bottom: 4rem;">
+    			<div class="text-center mb-5 mx-auto" style="max-width: 85%">
+    				<img src="/images/Background-Pictures/eu-it-rl-fse.jpg" alt="eu-it-rl-fse" draggable="false" class="animate__animated animate__fadeIn animate__delay-1s shadow-lg rounded-4 por-fse">
+    			</div>
+				<br> 
+				<img src="/images/svg/layered-peaks-footer-cap.svg" alt="mountains" draggable="false" class="bg-mountains" />
+			</div>
+		</div>
+		<!-- Site Footer -->
+		<div class="container-lg">
+			<footer class="d-flex flex-wrap justify-content-between align-items-center pt-3 my-3 border-top">
+    			<div class="col-md-4 d-flex align-items-center">
+      			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Torna alla Home">
+        				<img src="/images/Site-Favicons/favicon.png" alt="FondazioneIkarosLogo" class="footer-logo" draggable="false">
+      			</a>
+      			<span class="mb-3 mb-md-0"><i class="fa-regular fa-copyright"></i> 2022 - <span id="year"></span> Fondazione Ikaros <i class="bar-font">Bar</i></span>
+    			</div>
+      		<ul class="nav col-md-5 justify-content-end list-unstyled d-flex">
+    				<li class="ms-0"><div class="sc1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Facebook"><a href="https://www.facebook.com/ikaroscalcio/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-facebook fa-2x sce-1"></i></a></div></li>
+    				<li class="ms-3"><div class="sc2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Instagram"><a href="https://www.instagram.com/ikaroscalcio/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-instagram fa-2x sce-2"></i></a></div></li>
+    				<li class="ms-3"><div class="sc3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Youtube"><a href="https://www.youtube.com/user/IKAROSwebtv/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-youtube fa-2x sce-3"></i></a></div></li>
+  					<li class="ms-3"><div class="sc4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Sei uno sviluppatore? Vuoi saperne di più sull'applicazione che stai esplorando? Clicca per sapere di più!"><a href="https://github.com/Rvpartap/Fondazione-Ikaros-Bar" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-github fa-2x sce-4"></i></a></div></li>
+  				</ul>
+   		</footer>
+   		<div class="border-top d-flex flex-wrap justify-content-between">
+   			<p class="text-left py-2 mb-0"><img src="https://em-content.zobj.net/source/microsoft-teams/337/eyes_1f440.png" alt="privacy" style="width: 30px; margin-bottom: 16px; pointer-events: none;">&#160; Dai un'occhiata alla pagina <a href="https://www.fondazioneikaros.org/privacy-e-cookie-policy/" target="_blank" class="fw-bold link-decoration">Privacy e Cookie Policy</a></p>
+   			<p class="text-right py-2 mb-0"><img src="https://em-content.zobj.net/source/microsoft-teams/337/man-technologist_1f468-200d-1f4bb.png" alt="developer" style="width: 30px; margin-bottom: 16px; pointer-events: none;">&#160; Progettato e codificato da <a href="https://www.artglobal.it/" target="_blank" class="fw-bold link-decoration">Artglobal.it</a> & <a href="https://linktr.ee/rvpartap" target="_blank" class="fw-bold link-decoration">Rathour Vinay</a></p>
+   		</div>
+		</div>
+		<!-- go to top button -->
+		<button onclick="topFunction()" id="GoTop" title="Go to top" class="animate__animated animate__fadeInLeft">&#160;&#160;<i class="fa-solid fa-circle-arrow-up fa-lg"></i>&#160;&#160;</button>
+
+		@include('cookieConsent::index')
+
+		<!-- JavaScript -->
+		<script src="/lib/jquery-3.5.1/jquery.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="/lib/bootstrap-5.2.3/js/bootstrap.min.js" type="text/javascript"></script>		
+		<script src="/lib/fontawesome-6.2.0/js/all.min.js" type="text/javascript"></script>		
+		<script type="text/javascript">
+  			function openNav() {
+  				document.getElementById("home-nav").style.width = "320px";
+			}
+
+			function closeNav() {
+  				document.getElementById("home-nav").style.width = "0";
+			}
+	
+			//////////////////////////////////////////////////////////////////////////////
+	
+			let mybutton = document.getElementById("GoTop");
+	
+			window.onscroll = function() {scrollFunction()};
+
+			function scrollFunction() {
+  				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    				mybutton.style.display = "block";
+  				} else {
+    				mybutton.style.display = "none";
+  				}
+			}
+
+			function topFunction() {
+  				document.body.scrollTop = 0; 
+  				document.documentElement.scrollTop = 0; 
+			}
+			
+			//////////////////////////////////////////////////////////////////////////////
+			
+			const yearElement = document.getElementById("year");
+
+			const currentYear = new Date().getFullYear();
+
+			yearElement.innerHTML = currentYear;
+			
+			//////////////////////////////////////////////////////////////////////////////
+			
+			var myRange = document.getElementById("myRange");
+			var sendButton = document.getElementById("sendButton");
+
+			sendButton.disabled = true;
+
+			myRange.oninput = function() {
+  				if (this.value > 99) {
+    				sendButton.disabled = false;
+  				} else {
+    				sendButton.disabled = true;
+  				}
+			};
+			
+			//////////////////////////////////////////////////////////////////////////////
+    		
+    		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+			var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  				return new bootstrap.Tooltip(tooltipTriggerEl)
+			});
+			
+			//////////////////////////////////////////////////////////////////////////////
+			
+			let docTitle = document.title;
+			window.addEventListener("blur", () => {
+				document.title = "🥐☕... - Fondazione Ikaros Bar";			
+			});
+			
+			window.addEventListener("focus", () => {
+				document.title = docTitle;
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="theme-color" content="#ff7c00" />
+		<meta name="description" content="Eat Good Feel Good :)" />
+    	<meta name="keywords" content="Fondazione, Ikaros, Bar, Attività, Studenti, Calcio, Scuola, Superiore" />
+    	<meta name="author" content="Vinay Rathour" />
+		<title>Orders List Page - Fondazione Ikaros Bar</title>
+      <link rel="shortcut icon" href="{{ url("/images/Site-Favicons/favicon.png") }}" />
+      <link rel="stylesheet" type="text/css" href="{{ url("/lib/Dancing-Script/font.css") }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/bootstrap-5.2.3/css/bootstrap.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/fontawesome-6.2.0/css/all.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/animate.style-4.1.1/animate.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/DataTables-Bootstrap/Bootstrap-5.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/DataTables/datatables.min.css") }}"/>
+		<link rel="stylesheet" type="text/css" href="{{ url("/css/order_style.css") }}" />
+   </head>
+   <body class="container">
+   	<!-- Scroll Indicator -->
+   	<style type="text/css">
+   		.scroll-indicator {
+  				position: fixed;
+  				top: 0;
+  				left: 0;
+  				width: 100%;
+  				height: 10px;
+  				background-color: #000000;
+  				overflow: hidden;
+  				z-index: 99;
+			}
+
+			.progress-bar {
+  				width: 0;
+  				height: 10px;
+  				background-color: #ff7c00;
+  				transition: width 0.3s ease;
+  				border-bottom: 2px solid black;
+  				border-top: 2px solid black;
+			}
+   	</style>
+   	
+   	<div class="scroll-indicator">
+  			<div class="progress-bar"></div>
+		</div>
+		
+		<script type="text/javascript" >
+			window.addEventListener('scroll', function() {
+  				var scrollIndicator = document.querySelector('.progress-bar');
+  				var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  				var progress = (window.pageYOffset / maxScroll) * 100;
+  				scrollIndicator.style.width = progress + '%';
+  				scrollIndicator.style.position = 'fixed';
+			});
+		</script>
+   	<!-- Header -->
+		<img src="/images/svg/layered-peaks-table-up.svg" class="table-img" alt="table-up">
+		<div class="container-sm">
+			<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-3 border-bottom">
+   			<a href="/admin/home" class="mb-3 me-2 mb-md-0 text-dark text-decoration-none lh-1">
+     				<img src="/images/Site-Favicons/favicon.png" alt="FondazioneIkarosLogo" class="footer-logo" draggable="false">
+      			<span class="mb-3 mb-md-0">&#160; Fondazione Ikaros <i class="bar-font">Bar</i></span>
+      		</a>
+     			<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      			<li><a href="/students" class="nav-link px-2 link-dark">Manage Users</a></li>
+         		<li><a href="/prodotti" class="nav-link px-2 link-dark">Manage Menù</a></li>
+         		<li><a href="/order" class="nav-link px-2 link-dark">Manage Orders</a></li>
+         		<li><a href="https://webmail2.artglobaltech.com" target="_blank" class="nav-link px-2 link-dark">Manage Emails</a></li>
+         		<li><a href="/ordini" target="_blank" class="nav-link px-2 link-dark">Order Something</a></li>
+      		</ul>
+      		<div class="col-md-3 text-end">
+					<button type="button" class="btn btn-dark me-1 rounded-5" onclick="location.reload();"><i class="fa-solid fa-rotate"></i>&#160; Reload page</button>
+         		<a href="{{ route('logout') }}"><button type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-outline-danger rounded-5"><i class="fa-solid fa-right-from-bracket"></i>&#160; Exit</button></a>
+      			<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+           			@csrf
+        			</form>
+      		</div>
+   		</header>
+		</div>
+		<br>
+		<center><small class="animate__animated animate__fadeIn animate__delay-1s"><i>**Page viewable only from computer**</i></small></center>
+		<br>
+   	<!-- Orders Table -->
+		<div class="container-md">
+			@if(session()->get('status'))
+            <div class="animate__animated animate__fadeIn animate__delay-1s alert alert-success alert-dismissible fade show" role="alert">
+              	<div><i class="fa-solid fa-thumbs-up"></i>&#160; {{ session()->get('status') }}</div>
+              	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+           	</div>
+        	@endif
+			<br>
+			<div class="animate__animated animate__fadeIn animate__delay-1s row mb-3 align-items-center">
+   			<div class="col-md-8 float-start" style="font-size: 25px">&#160;<i class="fa-solid fa-clipboard-list"></i>&#160; List of all orders.</div>
+      		<small class="col-md-4 float-end" style="text-align: right;"><i class="fa-solid fa-laptop-code fa-lg"></i>&#160; #forDevelopers & &#160;<i class="fa-solid fa-mug-saucer fa-lg"></i>&#160; #forBartender</small>
+   		</div>
+   		<table id="ordersDataTable" class="animate__animated animate__fadeIn animate__delay-1s table shadow-lg table-striped" style="max-width:100%">
+  				<thead class="users-table-head">
+    				<tr class="table-dark align-items-center">
+        				<th scope="col" class="text-break"><i class="fa-solid fa-list-ol"></i>&#160; ID</th>
+        				<th scope="col" class="text-break"><i class="fa-solid fa-user"></i>&#160; Surname and name</th>
+        				<th scope="col" class="text-break"><i class="fa-solid fa-school"></i>&#160; Class</th>
+        				<th scope="col" class="text-break"><i class="fa-solid fa-bag-shopping"></i>&#160; Order and quantity</th>
+        				<th scope="col" class="text-break"><i class="fa-solid fa-euro-sign"></i>&#160; Total price</th>
+        				<th scope="col" class="text-break"><i class="fa-solid fa-thumbs-up"></i>&#160; Confirm?</th>
+        				<th scope="col" class="text-break"><i class="fa-solid fa-trash"></i>&#160; Delete?</th>
+      			</tr>
+    			</thead>
+    			<tbody class="table-group-divider">
+    				@foreach($orders as $order)
+      				@php
+        					$orderId = $order->id;
+        					$personOrders = $orders->where('id', $orderId);
+        					$totalPrice = $personOrders->sum('subtotale');
+      				@endphp
+      				<tr>
+        					<td scope="row" class="text-break"><span>{{ $order->id }}</span></td>
+        					<td class="text-break"><span>{{ $order->nome }}</span></td>
+        					<td class="text-break"><span>{{ $order->classe }}</span></td>
+        					<td class="text-break">
+          					<span>
+            					@foreach ($personOrders as $item)
+              						{{ $item->prodotto }}: {{ $item->quantity }}<br>
+            					@endforeach
+          					</span>
+        					</td>
+        					<td class="text-break"><span>{{ $totalPrice }}</span></td>
+        					<td id="id{{ $order->id }}" class="text-break"></td>
+        						<script type="text/javascript">
+          						if ({{ $order->conferma }} === 0) {
+            						document.getElementById('id{{ $order->id }}').innerHTML = '<form method="post" action="{{ route('order.update', $order->id) }}"><input type="hidden" name="conferma" id="conferma" value="1" /> @csrf @method("PATCH") <button class="btn btn-success btn-sm rounded-5" type="submit"> Confirm </button></form> ';
+          						} else {
+            						document.getElementById('id{{ $order->id }}').innerHTML = '<p style="color: green;"><i class="fa-solid fa-thumbs-up"></i>&#160; Order Confirmed</p>';
+          						}
+        						</script>
+        					<td class="text-break">
+          					<form action="{{ route('order.destroy', $order->id)}}" method="post" style="display: inline-block">
+            					@csrf
+            					@method('DELETE')
+            					<button class="btn btn-danger btn-sm mb-2 rounded-5" type="submit"> Delete </button>
+          					</form>
+        					</td>
+      				</tr>
+    				@endforeach
+  				</tbody>
+  				<tfoot class="users-table-head">
+    				<tr class="table-dark align-items-center">
+      				<th scope="col" class="text-break"><i class="fa-solid fa-list-ol"></i>&#160; ID</th>
+      				<th scope="col" class="text-break"><i class="fa-solid fa-user"></i>&#160; Surname and name</th>
+      				<th scope="col" class="text-break"><i class="fa-solid fa-school"></i>&#160; Class</th>
+      				<th scope="col" class="text-break"><i class="fa-solid fa-bag-shopping"></i>&#160; Order and quantity</th>
+      				<th scope="col" class="text-break"><i class="fa-solid fa-euro-sign"></i>&#160; Total price</th>
+      				<th scope="col" class="text-break"><i class="fa-solid fa-thumbs-up"></i>&#160; Confirm?</th>
+      				<th scope="col" class="text-break"><i class="fa-solid fa-trash"></i>&#160; Delete?</th>
+    				</tr>
+  				</tfoot>
+			</table>
+   	</div>    
+      <!-- Site Footer -->	
+		<br><br>
+		<center><small class="animate__animated animate__fadeIn animate__delay-1s"><i>**Page viewable only from computer**</i></small></center>
+		<br>
+		<div class="container-sm">
+			<footer class="d-flex flex-wrap justify-content-between align-items-center pt-3 my-3 border-top">
+    			<div class="col-md-4 d-flex align-items-center">
+      			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Torna alla Home">
+        				<img src="/images/Site-Favicons/favicon.png" alt="FondazioneIkarosLogo" class="footer-logo" draggable="false">
+      			</a>
+      			<span class="mb-3 mb-md-0"><i class="fa-regular fa-copyright"></i> 2022 - <span id="year"></span> Fondazione Ikaros <i class="bar-font">Bar</i></span>
+    			</div>
+      		<ul class="nav col-md-5 justify-content-end list-unstyled d-flex">
+    				<li class="ms-0"><div class="sc1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Facebook"><a href="https://www.facebook.com/ikaroscalcio/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-facebook fa-2x sce-1"></i></a></div></li>
+    				<li class="ms-3"><div class="sc2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Instagram"><a href="https://www.instagram.com/ikaroscalcio/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-instagram fa-2x sce-2"></i></a></div></li>
+    				<li class="ms-3"><div class="sc3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Youtube"><a href="https://www.youtube.com/user/IKAROSwebtv/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-youtube fa-2x sce-3"></i></a></div></li>
+  					<li class="ms-3"><div class="sc4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Sei uno sviluppatore? Vuoi saperne di più sull'applicazione che stai esplorando? Clicca per sapere di più!"><a href="https://github.com/Rvpartap/Fondazione-Ikaros-Bar" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-github fa-2x sce-4"></i></a></div></li>
+  				</ul>
+   		</footer>
+   		<div class="border-top d-flex flex-wrap justify-content-between">
+   			<p class="text-left py-2 mb-0"><img src="https://em-content.zobj.net/source/microsoft-teams/337/eyes_1f440.png" alt="privacy" style="width: 30px; margin-bottom: 16px; pointer-events: none;">&#160; Dai un'occhiata alla pagina <a href="https://www.fondazioneikaros.org/privacy-e-cookie-policy/" target="_blank" class="fw-bold link-decoration">Privacy e Cookie Policy</a></p>
+   			<p class="text-right py-2 mb-0"><img src="https://em-content.zobj.net/source/microsoft-teams/337/man-technologist_1f468-200d-1f4bb.png" alt="developer" style="width: 30px; margin-bottom: 16px; pointer-events: none;">&#160; Progettato e codificato da <a href="https://www.artglobal.it/" target="_blank" class="fw-bold link-decoration">Artglobal.it</a> & <a href="https://linktr.ee/rvpartap" target="_blank" class="fw-bold link-decoration">Rathour Vinay</a></p>
+   		</div>
+		</div>
+		<img src="/images/svg/layered-peaks-table-down.svg" class="table-img" alt="table-down">
+		<!-- go to top button -->
+		<button onclick="topFunction()" id="GoTop" title="Go to top" class="animate__animated animate__fadeInLeft">&#160;&#160;<i class="fa-solid fa-circle-arrow-up fa-lg"></i>&#160;&#160;</button>  
+		<!-- JavaScript -->
+		<script src="/lib/jquery-3.5.1/jquery.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="/lib/fontawesome-6.2.0/js/all.min.js" type="text/javascript"></script>			
+		<script src="/lib/DataTables/DataTables-1.13.1/js/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script src="/lib/DataTables-Bootstrap/Bootstrap-5.min.js" type="text/javascript"></script>
+		<script src="/lib/bootstrap-5.2.3/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+		<script type="text/javascript" >
+			let mybutton = document.getElementById("GoTop");
+	
+			window.onscroll = function() {scrollFunction()};
+
+			function scrollFunction() {
+  				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    				mybutton.style.display = "block";
+  				} else {
+    				mybutton.style.display = "none";
+  				}
+			}
+
+			function topFunction() {
+  				document.body.scrollTop = 0; 
+  				document.documentElement.scrollTop = 0; 
+			}
+	
+			///////////////////////////////////////////////////////////////////////////////////////
+	
+			$(document).ready(function () {
+   			$('#ordersDataTable').DataTable();
+			});
+			
+			//////////////////////////////////////////////////////////////////////////////
+			
+			const yearElement = document.getElementById("year");
+
+			const currentYear = new Date().getFullYear();
+
+			yearElement.innerHTML = currentYear;
+			
+			//////////////////////////////////////////////////////////////////////////////
+    		
+    		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+			var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  				return new bootstrap.Tooltip(tooltipTriggerEl)
+			});
+			
+			//////////////////////////////////////////////////////////////////////////////
+			
+			let docTitle = document.title;
+			window.addEventListener("blur", () => {
+				document.title = "🥐☕... - Fondazione Ikaros Bar";			
+			});
+			
+			window.addEventListener("focus", () => {
+				document.title = docTitle;
+			});
+		</script>
+	</body>
+</html>

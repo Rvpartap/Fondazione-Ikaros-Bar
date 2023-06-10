@@ -1,0 +1,8 @@
+<?php
+
+Return [
+    'email' => 'ikaros@artglobal.it',
+    'username' => 'Fondazione Ikaros Bar',
+];
+
+?>

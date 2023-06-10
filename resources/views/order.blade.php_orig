@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="theme-color" content="#ff7c00" />
+		<title>Orders List Page - Fondazione Ikaros Bar</title>
+		<link rel="shortcut icon" href="{{ url("/images/Site-Favicons/favicon.png") }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/Dancing-Script/font.css") }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/bootstrap-5.2.3/css/bootstrap.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/fontawesome-6.2.0/css/all.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/animate.style-4.1.1/animate.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/DataTables-Bootstrap/Bootstrap-5.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/DataTables/datatables.min.css") }}"/>
+		<link rel="stylesheet" type="text/css" href="{{ url("/css/order_style.css") }}"/>
+   </head>
+   <body class="container">
+   	<!-- Header -->
+		<img src="/images/svg/layered-peaks-table-up.svg" class="table-img" alt="table-up">
+		<div class="container-sm">
+			<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-3 border-bottom">
+   			<a href="/admin/home" class="mb-3 me-2 mb-md-0 text-dark text-decoration-none lh-1">
+     				<img src="/images/Site-Favicons/favicon.png" alt="FondazioneIkarosLogo" class="footer-logo" draggable="false">
+      			<span class="mb-3 mb-md-0">&#160; Fondazione Ikaros <i class="bar-font">Bar</i></span>
+      		</a>
+     			<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      			<li><a href="/students" class="nav-link px-2 link-dark">Manage Users</a></li>
+         		<li><a href="/prodotti" class="nav-link px-2 link-dark">Manage Menù</a></li>
+         		<li><a href="/order" class="nav-link px-2 link-dark">Manage Orders</a></li>
+         		<li><a href="https://webmail2.artglobaltech.com" target="_blank" class="nav-link px-2 link-dark">Manage Emails</a></li>
+         		<li><a href="/ordini" target="_blank" class="nav-link px-2 link-dark">Order Something</a></li>
+      		</ul>
+      		<div class="col-md-2 text-end">
+					<button type="button" onclick="location.reload();" class="btn btn-dark mb-2 me-1"><i class="fa-solid fa-rotate fa-spin"></i>&#160; Reload</button>
+         		<a href="{{ route('logout') }}"><button type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-outline-danger mb-2"><i class="fa-solid fa-right-from-bracket"></i>&#160; Exit</button></a>
+      			<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+           			@csrf
+        			</form>
+      		</div>
+   		</header>
+		</div>
+		<br>
+		<center><small><i>**Page viewable only from computer**</i></small></center>
+		<br>
+   	<!-- Orders Table -->
+		<div class="container-md">
+			@if(session()->get('success'))
+            <div class="alert alert-success">
+              	<div><i class="fa-solid fa-trash"></i>&#160; {{ session()->get('success') }}</div>
+           	</div>
+        	@endif
+			<br>
+			<div class="row mb-3 align-items-center">
+   			<div class="col-md-8 float-start" style="font-size: 25px">&#160;<i class="fa-solid fa-clipboard-list"></i>&#160; List of all orders.</div>
+      		<small class="col-md-4 float-end" style="text-align: right;"><i class="fa-solid fa-laptop-code fa-lg"></i>&#160; #forDevelopers & &#160;<i class="fa-solid fa-mug-saucer fa-lg"></i>&#160; #forBartender</small>
+   		</div>
+   		<table id="ordersDataTable" class="table shadow-lg table-striped" style="max-width:100%">
+				<thead class="users-table-head">
+    				<tr class="table-dark align-items-center">
+    					<th scope="col"><i class="fa-solid fa-list-ol"></i>&#160; ID</th>
+      				<th scope="col"><i class="fa-solid fa-user"></i>&#160; Surname and name</th>
+      				<th scope="col"><i class="fa-solid fa-school"></i>&#160; Class</th>
+     	 				<th scope="col"><i class="fa-solid fa-bag-shopping"></i>&#160; Order and quantity</th>
+     	 				<th scope="col"><i class="fa-solid fa-euro-sign"></i>&#160; Total price</th>
+     	 				<th scope="col"><i class="fa-solid fa-rss"></i>&#160; Order Status</th>
+     	 				<th scope="col"><i class="fa-solid fa-gavel"></i>&#160; Take actions</th>
+    				</tr>
+  				</thead>
+  				<tbody class="table-group-divider">
+  					@foreach($orders as $orders)
+  						<tr>
+    						<td scope="row">{{$orders->id}}</td>
+      					<td>{{$orders->nome}}</td>
+      					<td>{{$orders->classe}}</td>
+      					<td>
+      						<p>{{$orders->prodotto}}: {{$orders->quantity}}</p>
+      					</td>
+      				 	<!-----------------------------------------------
+      				 		To know the price of each product user this      						
+      						<td>{{$orders->prezzo}}</td>
+      				 	------------------------------------------------>
+      					<td>€ {{$orders->subtotale}}</td>
+      					<td>
+      						<div class="nav">
+      							<i class="fa-solid fa-circle text-success" style="font-size: 12px; padding: 0.4rem 0.4rem 0 0;"></i>&#160; <p class="pb-1">Pagato</p></td>
+      						</div>
+      					<td>
+      						<button class="btn btn-success btn-sm mb-2 me-1" type="submit"><i class="fa-solid fa-circle-check fa-lg"></i></button>
+                  		<form method="POST" action="{{route('order.destroy', $orders->id)}}" style="display: inline-block">
+        							@csrf
+                     		@method('DELETE')
+                  			<button class="btn btn-danger btn-sm mb-2" onclick="location.href='/order'" type="submit"><i class="fa-solid fa-trash fa-lg"></i></button>
+    							</form>
+							</td>
+    					</tr>
+    				@endforeach
+  				</tbody>
+  				<tfoot class="users-table-head">
+    				<tr class="table-dark align-items-center">
+    					<th scope="col"><i class="fa-solid fa-list-ol"></i>&#160; ID</th>
+      				<th scope="col"><i class="fa-solid fa-user"></i>&#160; Surname and name</th>
+      				<th scope="col"><i class="fa-solid fa-school"></i>&#160; Class</th>
+     	 				<th scope="col"><i class="fa-solid fa-bag-shopping"></i>&#160; Order and quantity</th>
+     	 				<th scope="col"><i class="fa-solid fa-euro-sign"></i>&#160; Total price</th>
+     	 				<th scope="col"><i class="fa-solid fa-rss"></i>&#160; Order Status</th>
+     	 				<th scope="col"><i class="fa-solid fa-gavel"></i>&#160; Take actions</th>
+    				</tr>
+  				</tfoot>
+  			</table>
+   	</div>    
+      <!-- Site Footer -->	
+		<br><br>
+		<center><small><i>**Page viewable only from computer**</i></small></center>
+		<br>
+		<div class="container-sm">
+			<footer class="d-flex flex-wrap justify-content-between align-items-center pt-3 my-3 border-top">
+    			<div class="col-md-4 d-flex align-items-center">
+      			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        				<img src="/images/Site-Favicons/favicon.png" alt="FondazioneIkarosLogo" class="footer-logo" draggable="false">
+      			</a>
+      			<span class="mb-3 mb-md-0"><i class="fa-regular fa-copyright"></i> 2022 - <span id="year"></span> Fondazione Ikaros <i class="bar-font">Bar</i></span>
+    			</div>
+      		<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      			<li class="ms-3"><a class="text-muted" href="https://www.facebook.com/ikaroscalcio/" target="_blank"><i class="fa-brands fa-facebook" style="color: #1778F2; font-size: 30px"></i></a></li>
+      			<li class="ms-3"><a class="text-muted" href="https://www.instagram.com/ikaroscalcio/" target="_blank"><i class="fa-brands fa-instagram" style="color: #DD2A7B; font-size: 30px"></i></a></li>
+      			<li class="ms-3"><a class="text-muted" href="https://www.youtube.com/user/IKAROSwebtv/" target="_blank"><i class="fa-brands fa-youtube" style="color: #E62117; font-size: 30px"></i></a></li>
+      		</ul>
+   		</footer>
+   		<div class="border-top d-flex flex-wrap justify-content-between">
+   			<p class="text-left pt-3" style="margin-bottom: 16px;"><img src="https://emojipedia-us.s3.amazonaws.com/source/microsoft-teams/337/eyes_1f440.png" alt="privacy" style="width: 30px; margin-bottom: 16px; pointer-events: none;">&#160; Check out the page <a href="https://www.fondazioneikaros.org/privacy-e-cookie-policy/" target="_blank" class="link-decoration"><u>Privacy e Cookie Policy </u></a></p>
+   			<p class="text-right pt-3 mb-3"><img src="https://emojipedia-us.s3.amazonaws.com/source/microsoft-teams/337/man-technologist_1f468-200d-1f4bb.png" alt="developer" style="width: 30px; margin-bottom: 16px; pointer-events: none;">&#160; Designed and coded by <a href="https://www.artglobal.it/" target="_blank" class="link-decoration"><u>Artglobal.it</u></a> & <a href="https://linktr.ee/rvpartap" target="_blank" class="link-decoration"><u>Rathour Vinay</u></a></p>
+   		</div>
+		</div>
+		<img src="/images/svg/layered-peaks-table-down.svg" class="table-img" alt="table-down">
+		
+		<!-- go to top button -->
+		<button onclick="topFunction()" id="GoTop" title="Go to top" class="animate__animated animate__fadeInLeft">&#160;&#160;<i class="fa-solid fa-circle-arrow-up fa-lg"></i>&#160;&#160;</button>  
+		
+		<!-- JavaScript -->
+		<script src="/lib/jquery-3.5.1/jquery.js" type="text/javascript"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script src="/lib/fontawesome-6.2.0/js/all.min.js" type="text/javascript"></script>			
+		<script src="/lib/DataTables/DataTables-1.13.1/js/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script src="/lib/DataTables-Bootstrap/Bootstrap-5.min.js" type="text/javascript"></script>
+		<script type="text/javascript" >
+			let mybutton = document.getElementById("GoTop");
+	
+			window.onscroll = function() {scrollFunction()};
+
+			function scrollFunction() {
+  				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    				mybutton.style.display = "block";
+  				} else {
+    				mybutton.style.display = "none";
+  				}
+			}
+
+			function topFunction() {
+  				document.body.scrollTop = 0; 
+  				document.documentElement.scrollTop = 0; 
+			}
+	
+			///////////////////////////////////////////////////////////////////////////////////////
+	
+			$(document).ready(function () {
+   			$('#ordersDataTable').DataTable();
+			});
+			
+			///////////////////////////////////////////////////////////////////////////////////////
+			
+			const yearElement = document.getElementById("year");
+
+			const currentYear = new Date().getFullYear();
+
+			yearElement.innerHTML = currentYear;
+		</script>
+	</body>
+</html>

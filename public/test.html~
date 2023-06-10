@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Block Message</title>
+<style>
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 88;
+}
+</style>
+</head>
+<body>
+<div class="overlay">
+  <main class="animate__animated animate__fadeInUp animate__delay-1s mt-3 px-3">
+    <div class="text-center text-white my-4">
+      <p class="h2 mb-0 pb-3 px-3">Sono ancora le...</p>
+      <p class="mb-0 pb-3 px-3 fw-bold"><span id="clock"></span></p>
+      <p class="mb-0 pb-3 px-3"><img src="https://em-content.zobj.net/source/microsoft-teams/337/face-with-raised-eyebrow_1f928.png" style="width: 100px; pointer-events: none;" draggable="false" alt="mmm..." /></p>
+      <p class="h6 mb-0 px-3">Direi che manca ancora un bel pò di tempo all'apertura del <i class="bar-font" style="font-size: 1.5rem;">Bar</i> Online.</p>
+      <p class="h6 mb-0 pb-3 px-3">La pagina Menù verrà riaperta alle <span class="fs-6 badge bg-primary">8:00 am</span> e non prima.</p>
+      <hr style="border: 2px solid white; opacity: 100;">
+      <p class="h6 mb-0 pt-3 px-3">Per tanto puoi gestire il tuo account cliccando sull'icona ( <i class="fa-solid fa-bars"></i> ).</p>
+    </div>
+  </main>
+</div>
+
+<script>
+function displayTime() {
+  var currentTime = new Date();
+  var hours = currentTime.getHours();
+  var minutes = currentTime.getMinutes();
+  var seconds = currentTime.getSeconds();
+  hours = (hours < 10 ? "0" : "") + hours;
+  minutes = (minutes < 10 ? "0" : "") + minutes;
+  seconds = (seconds < 10 ? "0" : "") + seconds;
+  var timeString = hours + " : " + minutes + " : " + seconds;
+  document.getElementById("clock").innerHTML = timeString;
+}
+setInterval(displayTime, 1000);
+
+// Check if the current hour is between 15 and 16
+var now = new Date();
+var hour = now.getHours();
+if (hour >= 15 && hour < 16) {
+  document.getElementById("pageblock").style.display = "none";
+} else {
+  document.getElementById("pageblock").style.display = "block";
+}
+</script>
+</body>
+</html>

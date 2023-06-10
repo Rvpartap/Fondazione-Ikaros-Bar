@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="theme-color" content="#ff7c00" />
+		<title>Users Create Page - Fondazione Ikaros Bar</title>
+		<link rel="shortcut icon" href="{{ url("/images/Site-Favicons/favicon.png") }}" />
+      <link rel="stylesheet" type="text/css" href="{{ url("/lib/Dancing-Script/font.css") }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/bootstrap-5.2.3/css/bootstrap.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/fontawesome-6.2.0/css/all.min.css") }}" />		
+		<link rel="stylesheet" type="text/css" href="{{ url("/lib/animate.style-4.1.1/animate.min.css") }}" /><link rel="stylesheet" type="text/css" href="{{ url("/css/create_style.css") }}" />
+   </head>
+	<body class="container">
+		<style type="text/css">
+   		.scroll-indicator {
+  				position: fixed;
+  				top: 0;
+  				left: 0;
+  				width: 100%;
+  				height: 10px;
+  				background-color: #000000;
+  				overflow: hidden;
+  				z-index: 99;
+			}
+
+			.progress-bar {
+  				width: 0;
+  				height: 10px;
+  				background-color: #ff7c00;
+  				transition: width 0.3s ease;
+  				border-bottom: 2px solid black;
+  				border-top: 2px solid black;
+			}
+   	</style>
+   	
+   	<div class="scroll-indicator">
+  			<div class="progress-bar"></div>
+		</div>
+		
+		<script type="text/javascript" >
+			window.addEventListener('scroll', function() {
+  				var scrollIndicator = document.querySelector('.progress-bar');
+  				var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  				var progress = (window.pageYOffset / maxScroll) * 100;
+  				scrollIndicator.style.width = progress + '%';
+  				scrollIndicator.style.position = 'fixed';
+			});
+		</script>
+		<button onclick="location.href='/students'" id="gotostudents" class="animate__animated animate__fadeInRight">&#160;&#160;<i class="fa-solid fa-gavel fa-lg"></i>&#160; Amministra gli Utenti</button>
+		<button onclick="location.href='/admin/home'" id="goback" class="animate__animated animate__fadeInLeft">Torna alla pagina Admin &#160;<i class="fa-solid fa-reply fa-lg"></i>&#160;&#160;</button>
+		<center>
+   		<img src="/images/Logo/fondazioneikaros-logo.svg" class="logo animate__animated animate__fadeInUp" draggable="false" />
+		</center>
+		<div class="modal modal-signin position-static d-block py-4 animate__animated animate__fadeInUp" tabindex="-1" role="dialog" id="modalSignin">
+			<div class="modal-dialog" role="document">
+   			<div class="modal-content rounded-5 shadow">
+      			<div class="modal-header p-5 pb-4 border-bottom-0">
+						<h6 class="fw-bold mb-0 font-size"><i class="fa-solid fa-user-plus fa-lg"></i>&#160; Crea un nuovo utente</h6>
+					</div>
+      			<div class="modal-body p-5 pt-0">
+      				<form method="post" action="{{ route('students.store') }}">
+      					@csrf
+      					<div class="form-floating mb-3">
+         					<input type="text" class="form-control rounded-4" name="name" id="name" placeholder="Cognome e Nome" required="true">
+            				<label for="name">&#160;<i class="fa-solid fa-user"></i> &#160; Cognome e Nome<i style="color: red">*</i></label>
+         				</div>
+      					<div class="form-floating mb-3">
+            				<input type="email" class="form-control rounded-4" name="email" id="email" placeholder="name@example.com" required="true">
+            				<label for="email">&#160;<i class="fa-solid fa-at"></i> &#160; Indirizzo Email<i style="color: red">*</i></label>
+         				</div>
+        					<div class="form-floating mb-3">
+         					<select class="form-control form-select rounded-4" name="classe" id="classe" placeholder="Scegli la Classe" required="true">
+  									<option selected></option>
+  									<!-- Le Prime -->
+		  							<option value="1 Informatica A">1 Informatica A</option>
+  									<option value="1 Informatica B">1 Informatica B</option>
+  									<option value="1 Impresa A">1 Impresa A</option>
+  									<option value="1 Impresa B">1 Impresa B</option>
+  									<option value="1 Logistica A">1 Logistica A</option>
+		  							<option value="1 Logistica B">1 Logistica B</option>
+  									<option value="1 Elettrico A">1 Elettrico A</option>
+	  								<option value="1 Elettrico B">1 Elettrico B</option>
+	  								<option value="1 Ristorazione A">1 Ristorazione A</option>
+		  							<option value="1 Ristorazione B">1 Ristorazione B</option>
+		  							<option value="1 Estetica A">1 Estetica A</option>
+		  							<option value="1 Estetica B">1 Estetica B</option>
+		  							<option value="1 Acconciatura A">1 Acconciatura A</option>
+			  						<option value="1 Acconciatura B">1 Acconciatura B</option>
+			  						<!-- Le Seconde -->
+									<option value="2 Informatica A">2 Informatica A</option>
+		  							<option value="2 Informatica B">2 Informatica B</option>
+									<option value="2 Impresa A">2 Impresa A</option>
+	  								<option value="2 Impresa B">2 Impresa B</option>
+			  						<option value="2 Logistica A">2 Logistica A</option>
+			  						<option value="2 Logistica B">2 Logistica B</option>
+			  						<option value="2 Elettrico A">2 Elettrico A</option>
+  									<option value="2 Elettrico B">2 Elettrico B</option>
+  									<option value="2 Ristorazione A">2 Ristorazione A</option>
+  									<option value="2 Ristorazione B">2 Ristorazione B</option>
+  									<option value="2 Estetica A">2 Estetica A</option>
+  									<option value="2 Estetica B">2 Estetica B</option>
+  									<option value="2 Acconciatura A">2 Acconciatura A</option>
+  									<option value="2 Acconciatura B">2 Acconciatura B</option>  					
+									<!-- Le Terze -->
+  									<option value="3 Informatica A">3 Informatica A</option>
+  									<option value="3 Informatica B">3 Informatica B</option>
+  									<option value="3 Impresa A">3 Impresa A</option>
+  									<option value="3 Impresa B">3 Impresa B</option>
+  									<option value="3 Logistica A">3 Logistica A</option>
+  									<option value="3 Logistica B">3 Logistica B</option>
+  									<option value="3 Elettrico A">3 Elettrico A</option>
+  									<option value="3 Elettrico B">3 Elettrico B</option>
+  									<option value="3 Ristorazione A">3 Ristorazione A</option>
+  									<option value="3 Ristorazione B">3 Ristorazione B</option>
+									<option value="3 Estetica A">3 Estetica A</option>
+  									<option value="3 Estetica B">3 Estetica B</option>
+  									<option value="3 Acconciatura A">3 Acconciatura A</option>
+  									<option value="3 Acconciatura B">3 Acconciatura B</option>
+  									<!-- Le Quarte -->
+  									<option value="4 Informatica A">4 Informatica A</option>
+  									<option value="4 Informatica B">4 Informatica B</option>
+  									<option value="4 Impresa A">4 Impresa A</option>
+  									<option value="4 Impresa B">4 Impresa B</option>
+ 									<option value="4 Logistica A">4 Logistica A</option>
+ 									<option value="4 Logistica B">4 Logistica B</option>
+  									<option value="4 Elettrico A">4 Elettrico A</option>
+  									<option value="4 Elettrico B">4 Elettrico B</option>
+  									<option value="4 Ristorazione A">4 Ristorazione A</option>
+  									<option value="4 Ristorazione B">4 Ristorazione B</option>
+  									<option value="4 Estetica A">4 Estetica A</option>
+  									<option value="4 Estetica B">4 Estetica B</option>
+  									<option value="4 Acconciatura A">4 Acconciatura A</option>
+  									<option value="4 Acconciatura B">4 Acconciatura B</option>
+  									<!-- Le Quinte -->
+									<option value="5 Informatica A">5 Informatica A</option>
+									<option value="5 Informatica B">5 Informatica B</option>
+  									<option value="5 Impresa A">5 Impresa A</option>
+  									<option value="5 Impresa B">5 Impresa B</option>
+  									<option value="5 Logistica A">5 Logistica A</option>
+  									<option value="5 Logistica B">5 Logistica B</option>
+  									<option value="5 Elettrico A">5 Elettrico A</option>
+  									<option value="5 Elettrico B">5 Elettrico B</option>
+  									<option value="5 Ristorazione A">5 Ristorzione A</option>
+  									<option value="5 Ristorazione B">5 Ristorazione B</option>
+  									<option value="5 Estetica A">5 Estetica A</option>
+  									<option value="5 Estetica B">5 Estetica B</option>
+  									<option value="5 Acconciatura A">5 Acconciatura A</option>
+  									<option value="5 Acconciatura B">5 Acconciatura B</option>
+  									<!-- Staff -->
+  									<option value="Fondazione Ikaros Staff">Fondazione Ikaros Staff</option>
+								</select>
+            				<label for="classe">&#160;<i class="fa-solid fa-school"></i> &#160; Seleziona la Classe<i style="color: red;">*</i></label>
+         				</div>
+         				<div class="form-floating mb-3">
+            				<input type="text" class="form-control rounded-4" name="password" id="password" placeholder="Password" required="true">
+            				<label for="password">&#160;<i class="fa-solid fa-key"></i> &#160; Password<i style="color: red;">*</i></label>
+         				</div>
+         				<button type="submit" class="w-100 btn btn-lg rounded-4 btn-primary mb-3">Crea l'account</button>
+							@if ($errors->any())
+      						<div class="alert alert-danger mb-3">
+        							<ul>
+            						@foreach ($errors->all() as $error)
+              							<li>{{ $error }}</li>
+           							@endforeach
+        							</ul>
+      						</div>
+   						@endif         				
+         				<p class="note">Ingressi con simbolo <b style="color: red">*</b> non possono essere vuoti.</p>
+       				</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p class="text-center tos fw-bold">Dai un'occhiata alla pagina <a href="https://www.fondazioneikaros.org/privacy-e-cookie-policy/" class="link-decoration">Privacy e Cookie Policy</a></p>
+		<p class="text-center credits fw-bold"><i class="fa-regular fa-copyright"></i> <a href="/" class="link-decoration">Fondazione Ikaros Bar</a> - Progettato e codificato da <a href="https://www.artglobal.it" target="_blank" class="link-decoration">Artglobal.it</a> & <a href="https://linktr.ee/rvpartap" target="_blank" class="link-decoration" >Rathour Vinay</a></p>
+		<!-- JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="/lib/bootstrap-5.2.3/js/bootstrap.min.js" type="text/javascript"></script>		
+		<script src="/lib/fontawesome-6.2.0/js/all.min.js" type="text/javascript"></script>		
+		<script type="text/javascript" >
+			
+			let docTitle = document.title;
+			window.addEventListener("blur", () => {
+				document.title = "🥐☕... - Fondazione Ikaros Bar";			
+			});
+			
+			window.addEventListener("focus", () => {
+				document.title = docTitle;
+			});
+			
+		</script>
+	</body>
+</html>	

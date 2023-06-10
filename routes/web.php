@@ -1,0 +1,54 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/contact', 'ContactController@show');
+Route::post('/contact', 'ContactController@mailContactForm');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('admin/home', 'HomeController@authenticationValidateAdmin')->name('admin.route')->middleware('authentic');
+Route::get('baradmin/home', 'HomeController@authenticationValidateBarAdmin')->name('baradmin.route')->middleware('authentic');
+Route::get('user/home', 'HomeController@authenticationValidateUser')->name('user.route')->middleware('authentic');
+Route::get('/test', 'HomeController@authenticationValidateDeveloper')->name('Dev.route')->middleware('authentic');
+//rotta per inserimento studenti nella tabella Users
+Route::resource('students', 'StudentController');
+//rotta per inserimento prodotti nella tabella prodottis
+Route::resource('prodotti', 'ProdottiController');
+//rotte per ordini e carrello
+Route::middleware(['authentic'])->group(function () {
+    Route::view('/game', 'game');
+});
+Route::get('ordini', 'OrdiniController@index');  
+Route::get('cart', 'OrdiniController@cart')->name('cart');
+Route::get('add-to-cart/{id}', 'OrdiniController@addToCart')->name('add.to.cart');
+Route::patch('update-cart', 'OrdiniController@update')->name('update.cart');
+Route::delete('remove-from-cart', 'OrdiniController@remove')->name('remove.from.cart');
+//rotta per checkout
+Route::get('/checkout', 'OrdiniController@checkout')->name('checkout');
+Route::resource('order', 'OrderController');
+//rotta per reimpostare password
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+//rotta per modificare il proprio account
+Route::patch('/account', 'AccountController@edit')->name('account.edit');
+Route::post('/account', 'AccountController@update')->name('account.update');
+//modifica del profilo da parte dell'utente
+Route::resource('profile', 'ProfileController');

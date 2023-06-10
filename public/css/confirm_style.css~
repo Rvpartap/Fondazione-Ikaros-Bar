@@ -1,0 +1,231 @@
+/* Password Reset CSS */
+
+body {
+   background-image: url("/images/svg/polygon-scatter-passreset.svg");
+   background-position: center;
+  	background-repeat: no-repeat;
+  	background-size: cover;
+  	cursor: url('/images/Site-Favicons/cursor.cur'), auto;
+}
+
+.container {
+   max-width: 470px;
+}
+
+.push-top {
+	margin-top: 70px;
+}
+
+.space-bottom {
+	margin-bottom: 16px;
+} 
+
+.note {
+	margin-bottom: 0;
+	font-size: 14px;
+	padding: 10px 0 0 0;
+}
+
+.text-space {
+	margin-bottom: 5px;
+}
+
+.logo {
+	margin-bottom: -20px; 
+	margin-top: 40px;
+	width: 50%;
+	pointer-events: none;
+}
+
+.credits {
+	color: black;
+ 	font-size: 14px;
+}
+
+.tos {
+	margin-bottom: 10px; 
+	color: black;
+	font-size: 14px;
+}
+
+.mini-logo {
+	margin-top: -13px; 
+	width: 35px;
+	pointer-events: none;
+}
+
+.text-muted {
+	font-size: 13px;
+}
+
+.font-size {
+	font-size: 22px;
+}
+
+.link-decoration {
+	text-decoration: none; 
+	color: black;
+	transition: 0.5s;
+}
+
+.link-decoration:hover {
+	color: #e4871b;
+}
+
+#gohome {
+	font-size: 20px; 
+  	color: white;
+  	position: fixed;
+   right: 0;
+   top: 3%;
+   cursor: pointer;
+   border: none;
+   outline: none;
+   background-color: black;
+   padding: 12px;
+   border-radius: 50px 0 0 50px;
+   z-index: 99;
+   transition: 0.5s;
+}
+
+#gohome:hover {
+	background-color: #1C1C1C;
+}
+
+#goauth {
+	font-size: 20px; 
+  	color: white;
+  	position: fixed;
+   left: 0;
+   top: 3%;
+   cursor: pointer;
+   border: none;
+   outline: none;
+   background-color: black;
+   padding: 12px;
+   border-radius: 0 50px 50px 0;
+   z-index: 99;
+   transition: 0.5s;
+}
+
+#goauth:hover {
+	background-color: #1C1C1C;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: black; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e4871b; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #da711e; 
+}
+
+/* Footer */
+
+.sc1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #1778F2;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-1 {
+	color: #1778F2;
+	transition: background-color 1s ease;
+}
+
+.sc1:hover {
+  background-color: #1778F2;
+}
+
+.sce-1:hover {
+	color: #ffffff;
+}
+
+.sc2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #DD2A7B;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-2 {
+	color: #DD2A7B;
+	transition: background-color 1s ease;
+}
+
+.sc2:hover {
+  background-color: #DD2A7B;
+}
+
+.sce-2:hover {
+	color: #ffffff;
+}
+
+.sc3 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #E62117;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-3 {
+	color: #E62117;
+	transition: background-color 1s ease;
+}
+
+.sc3:hover {
+  background-color: #E62117;
+}
+
+.sce-3:hover {
+	color: #ffffff;
+}
+
+.sc4 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #0e0e0e;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-4 {
+	color: #0e0e0e;
+	transition: background-color 1s ease;
+}
+
+.sc4:hover {
+  background-color: #0e0e0e;
+}
+
+.sce-4:hover {
+	color: #ffffff;
+}

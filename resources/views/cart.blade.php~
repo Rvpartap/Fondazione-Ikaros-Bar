@@ -1,0 +1,290 @@
+@extends('layouts.cart')
+  
+@section('content')
+		<!-- Scroll Indicator -->
+   	<style type="text/css">
+   		.scroll-indicator {
+  				position: fixed;
+  				top: 0;
+  				left: 0;
+  				width: 100%;
+  				height: 10px;
+  				background-color: #000000;
+  				overflow: hidden;
+  				z-index: 99;
+			}
+
+			.progress-bar {
+  				width: 0;
+  				height: 10px;
+  				background-color: #ff7c00;
+  				transition: width 0.3s ease;
+  				border-bottom: 2px solid black;
+  				border-top: 2px solid black;
+			}
+   	</style>
+   	
+   	<div class="scroll-indicator">
+  			<div class="progress-bar"></div>
+		</div>
+		
+		<script type="text/javascript" >
+			window.addEventListener('scroll', function() {
+  				var scrollIndicator = document.querySelector('.progress-bar');
+  				var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  				var progress = (window.pageYOffset / maxScroll) * 100;
+  				scrollIndicator.style.width = progress + '%';
+  				scrollIndicator.style.position = 'fixed';
+			});
+		</script>
+		<!-- Side Navigation Bar -->
+		<span id="burger" onclick="openNav()" class="animate__animated animate__fadeInRight">&#160;&#160;<i class="fa-solid fa-bars fa-lg"></i>&#160;&#160;</span>
+		<div id="home-nav" class="home-navigation">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><i class="fa-solid fa-xmark fa-lg"></i></a>
+   		<img class="second-logo" src="/images/Logo/ikaros-second-logo.png" draggable="false" alt="fondazioneikaros">
+   		<a href="/">Pagina Home</a>
+   		<a href="/contact">Informazioni e contatti</a>
+   		<hr style="border: solid 1px white;">
+   		<div style="color: white; padding: 0px 8px 8px 25px; margin-bottom: -15px; width: 99%;">
+   			<p class="mb-0"><img src="https://em-content.zobj.net/source/microsoft-teams/337/waving-hand_1f44b.png" alt="hello" style="width: 28px; margin-left: -5px; margin-right: 5px; margin-bottom: 15px; pointer-events: none;">Ciao {{ Auth::user()->name }}.</p>
+        		<p class="mb-3">Queste sono le azioni che puoi fare nel tuo account per ora:</p>
+        	</div>
+        	<button type="button" onclick="location.href='/profile'" class="btn btn-outline-light rounded-5 my-1" style="margin-left: 25px;"><i class="fa-solid fa-marker"></i>&#160; Modifica l'account</button>
+  			<a href="{{ route('logout') }}"><button type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="btn btn-outline-danger rounded-5"><i class="fa-solid fa-right-from-bracket"></i>&#160; Esci dall'area privata</button></a>
+         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+           	@csrf
+        	</form>
+   		<hr style="border: solid 1px white;">
+ 			<a href="https://www.fondazioneikaros.org/dona-sostieni-la-fondazione/"><i class="fa-solid fa-hand-holding-heart"></i>&#160; Sostieni la Fondazione</a>
+   		<a href="https://www.fondazioneikaros.org/blog/"><i class="fa-solid fa-rss"></i>&#160; News & Blog</a>
+			<hr style="border: solid 1px white;">
+   		<a href="https://www.fondazioneikaros.org/" class="text-nav-fav"><img src="/images/Site-Favicons/favicon.png" draggable="false" alt="FondazioneIkarosLogo" class="img-favicon1"> Fondazione Ikaros</a>
+   		<a href="https://www.istitutopolitecnico.org/" class="text-nav-fav"><img src="/images/Site-Favicons/favicon-istitutopolitecnico.png" draggable="false" alt="IstitutoPolitecnicoLogo" class="img-favicon2"> Istituto Politecnico</a>
+			<hr style="border: solid 1px white;">
+			<div class="imp-note">
+				<p>Avviso per i Talenti e Insegnanti: </p>
+				<p>É vietato condividere le vostre informazioni relative a questo sito con qualcuno. Grazie!</p>
+			</div>
+			<hr style="border: solid 1px white;">
+			<a href="/admin/home" target="_blank" style="font-size: 13px; color: #0088ff; width: 300px; margin-bottom: 12px;"><i class="fa-solid fa-gavel fa-lg"></i> &#160; Area riservata per gli Amministratori</a>
+		</div>
+		<!-- Product Selected -->
+		<img src="images/svg/layered-steps-top-cube.svg" alt="top-cube" class="cubes-img">
+		<div class="container-sm">
+			<br>
+			<div class="animate__animated animate__fadeIn animate__delay-1s mt-2 mb-3">
+				<h2 class="float-start"><i class="fa-solid fa-cart-shopping"></i>&#160; <strong>Il tuo carrello</strong></h2>
+				<br />
+			</div>
+			<br>
+			@if(session('success'))
+        		<div class="animate__animated animate__fadeIn animate__delay-1s alert alert-success alert-dismissible fade show" role="alert">
+          		<div><i class="fa-solid fa-thumbs-up"></i>&#160; {{ session('success') }}</div>
+          		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        		</div> 
+    		@endif
+			<hr>
+			<div class="mt-4 table-responsive">
+				<table class="animate__animated animate__fadeIn animate__delay-1s table table-borderless">
+					<thead>
+						<tr>
+      					<th scope="col"><i class="fa-solid fa-image"></i>&#160; Immagine</th>
+      					<th scope="col"><i class="fa-solid fa-burger"></i>&#160; Nome Prodotto</th>
+      					<th scope="col"><i class="fa-solid fa-coins"></i>&#160; Prezzo</th>
+      					<th scope="col"><i class="fa-solid fa-arrow-down-1-9"></i>&#160; Scelta quantità</th>
+      					<th scope="col"><i class="fa-solid fa-euro-sign"></i>&#160; Subtotale</th>
+      					<th scope="col"><i class="fa-solid fa-trash"></i>&#160; Vuoi Rimuoverlo?</th>
+    					</tr>
+					</thead>
+  					<tbody>
+  						@php $total = 0 @endphp
+       				@if(session('cart'))
+            			@foreach(session('cart') as $id => $details)
+                			@php $total += $details['prezzo'] * $details['quantity'] @endphp
+    							<tr style="border: white;" data-id="{{ $id }}">
+      							<td scope="row" data-th="Product">
+										<div class="d-inline-flex float-start mb-4">
+          								<img src="{{ $details['image'] }}" alt="product" width="120px" height="100px" class="rounded-4 shadow me-1" style="pointer-events: none;"/>
+        								</div>
+      							</td>
+      							<td>
+      								<h3 class="h3 fw-bold pt-2" style="width: 180px">{{ $details['nome'] }}</h3>
+      							</td>
+      							<td data-th="Price">
+      								<p class="h3 pt-2" style="width: 90px">€ {{ $details['prezzo'] }}</p>
+      							</td>
+      							<td data-th="Quantity">
+      							
+										<!--      							
+      									Input Version:
+      									
+											<input type="number" value="" style="width: 200px" class="form-control mt-1 quantity update-cart" />									
+										-->  							
+      							
+      								<select class="form-control form-select rounded-5 mt-1 quantity update-cart" style="width: 200px">
+  											<option value="{{ $details['quantity'] }}">{{ $details['quantity'] }}</option>
+		  									<option value="1">1</option>
+		  									<option value="2">2</option>
+		  									<option value="3">3</option>
+		  									<option value="4">4</option>
+		  									<option value="5">5</option>
+		  									<option value="6">6</option>
+		  									<option value="7">7</option>
+		  									<option value="8">8</option>
+		  									<option value="9">9</option>
+		  									<option value="10">10</option>
+		  								</select>
+      							</td>
+    								<td data-th="Subtotal" >
+    									<p class="h3 pt-2 text-success" style="width: 80px">€ {{ $details['prezzo'] * $details['quantity'] }}</p>
+    								</td>
+    								<td class="actions" data-th="">
+                        		<button class="btn btn-outline-danger rounded-5 remove-from-cart mt-1" style="width: 120px;">&#160;<i class="fa-solid fa-trash"></i>&#160; Rimuovi&#160;</button>
+                    			</td>
+    							</tr>
+ 							@endforeach
+        				@endif
+  					</tbody>
+				</table>
+			</div>		
+			<hr>
+			<div class="row pt-3 pb-2">
+				<div class="animate__animated animate__fadeIn animate__delay-1s col-xxl-4">
+					<h3 class="fs-3 float-start"><strong>Totale Prezzo: € {{ $total }}</strong></h3>
+				</div>
+			</div>
+			<hr>
+			<div class="row text-center mt-5 mb-5">
+      		<div class="animate__animated animate__fadeIn animate__delay-1s col-md-4">
+      			<div class="d-grid gap-2">
+      				<button onclick="location.href='{{ url('ordini') }}'" class="btn btn-dark btn-lg rounded-5 mb-3"><i class="fa-solid fa-caret-left fa-lg"></i>&#160; Continua con l'acquisto</button>	
+      			</div>
+      		</div>
+      		<div class="col-md-4"></div>
+      		<div class="animate__animated animate__fadeIn animate__delay-1s col-md-4">
+      			<div class="d-grid gap-2">
+      				<button onclick="location.href='{{ url('checkout') }}'" class="btn btn-success btn-lg rounded-5">Vai al Checkout &#160;<i class="fa-solid fa-caret-right fa-lg"></i></button>
+      			</div>
+      		</div>	
+			</div>
+		</div>
+		<!-- Site Footer -->
+		<div class="container-md">
+			<footer class="d-flex flex-wrap justify-content-between align-items-center pt-3 my-3 border-top">
+    			<div class="col-md-4 d-flex align-items-center">
+      			<a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Torna alla Home">
+        				<img src="/images/Site-Favicons/favicon.png" alt="FondazioneIkarosLogo" class="footer-logo" draggable="false">
+      			</a>
+      			<span class="mb-3 mb-md-0"><i class="fa-regular fa-copyright"></i> 2022 - <span id="year"></span> Fondazione Ikaros <i class="bar-font">Bar</i></span>
+    			</div>
+      		<ul class="nav col-md-5 justify-content-end list-unstyled d-flex">
+    				<li class="ms-0"><div class="sc1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Facebook"><a href="https://www.facebook.com/ikaroscalcio/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-facebook fa-2x sce-1"></i></a></div></li>
+    				<li class="ms-3"><div class="sc2" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Instagram"><a href="https://www.instagram.com/ikaroscalcio/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-instagram fa-2x sce-2"></i></a></div></li>
+    				<li class="ms-3"><div class="sc3" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Youtube"><a href="https://www.youtube.com/user/IKAROSwebtv/" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-youtube fa-2x sce-3"></i></a></div></li>
+  					<li class="ms-3"><div class="sc4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Sei uno sviluppatore? Vuoi saperne di più sull'applicazione che stai esplorando? Clicca per sapere di più!"><a href="https://github.com/Rvpartap/Fondazione-Ikaros-Bar" style="text-decoration: none;" target="_blank"><i class="fa-brands fa-github fa-2x sce-4"></i></a></div></li>
+  				</ul>
+   		</footer>
+   		<div class="border-top d-flex flex-wrap justify-content-between">
+   			<p class="text-left py-2 mb-0"><img src="https://em-content.zobj.net/source/microsoft-teams/337/eyes_1f440.png" alt="privacy" style="width: 30px; margin-bottom: 16px; pointer-events: none;">&#160; Dai un'occhiata alla pagina <a href="https://www.fondazioneikaros.org/privacy-e-cookie-policy/" target="_blank" class="fw-bold link-decoration">Privacy e Cookie Policy</a></p>
+   			<p class="text-right py-2 mb-0"><img src="https://em-content.zobj.net/source/microsoft-teams/337/man-technologist_1f468-200d-1f4bb.png" alt="developer" style="width: 30px; margin-bottom: 16px; pointer-events: none;">&#160; Progettato e codificato da <a href="https://www.artglobal.it/" target="_blank" class="fw-bold link-decoration">Artglobal.it</a> & <a href="https://linktr.ee/rvpartap" target="_blank" class="fw-bold link-decoration">Rathour Vinay</a></p>
+   		</div>
+		</div>
+		<img src="images/svg/layered-steps-down-cube.svg" alt="down-cube" class="cubes-img">
+		<!-- go to top button -->
+		<button onclick="topFunction()" id="GoTop" title="Go to top" class="animate__animated animate__fadeInLeft">&#160;&#160;<i class="fa-solid fa-circle-arrow-up fa-lg"></i>&#160;&#160;</button>		
+@endsection
+		
+<!-- JavaScript -->
+@section('scripts')
+		<script type="text/javascript">
+			function openNav() {
+  				document.getElementById("home-nav").style.width = "320px";
+			}
+
+			function closeNav() {
+  				document.getElementById("home-nav").style.width = "0";
+			}
+	
+			//////////////////////////////////////////////////////////////////////////////
+	
+			let mybutton = document.getElementById("GoTop");
+	
+			window.onscroll = function() {scrollFunction()};
+
+			function scrollFunction() {
+  				if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    				mybutton.style.display = "block";
+  				} else {
+    				mybutton.style.display = "none";
+  				}
+			}
+
+			function topFunction() {
+  				document.body.scrollTop = 0; 
+  				document.documentElement.scrollTop = 0; 
+			}
+			
+			//////////////////////////////////////////////////////////////////////////////
+			
+			const yearElement = document.getElementById("year");
+
+			const currentYear = new Date().getFullYear();
+
+			yearElement.innerHTML = currentYear;	
+			
+			//////////////////////////////////////////////////////////////////////////////		
+			
+    		$(".update-cart").change(function (e) {
+        		e.preventDefault();
+        		var ele = $(this);
+        		$.ajax({
+           	 	url: '{{ route('update.cart') }}',
+            	method: "patch",
+           		data: {
+              		_token: '{{ csrf_token() }}',
+              		id: ele.parents("tr").attr("data-id"),
+              		quantity: ele.parents("tr").find(".quantity").val()
+           		},
+            	success: function (response) {
+              		window.location.reload();
+            	}
+        		});
+    		});
+
+    		$(".remove-from-cart").click(function (e) {
+        		e.preventDefault();
+     			var ele = $(this);
+      		if(confirm("Sei sicuro di rimuoverlo?")) {
+           		$.ajax({
+              		url: '{{ route('remove.from.cart') }}',
+              		method: "DELETE",
+              		data: {
+                 		_token: '{{ csrf_token() }}',
+                 		id: ele.parents("tr").attr("data-id")
+              		},
+              		success: function (response) {
+                 		window.location.reload();
+             		}
+         		});
+     			}
+   		});
+   		
+   		//////////////////////////////////////////////////////////////////////////////
+    		
+    		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+			var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  				return new bootstrap.Tooltip(tooltipTriggerEl)
+			});
+			
+			//////////////////////////////////////////////////////////////////////////////
+			
+			let docTitle = document.title;
+			window.addEventListener("blur", () => {
+				document.title = "Torna dietro!!";			
+			});
+			
+			window.addEventListener("focus", () => {
+				document.title = docTitle;
+			});
+		</script>
+@endsection

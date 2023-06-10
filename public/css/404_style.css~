@@ -1,0 +1,378 @@
+	/* CSS of Error 404 Page */
+
+	@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+
+	/* Page Containers */
+	
+	body {
+		cursor: url('/images/Site-Favicons/cursor.cur'), auto;	
+	}	
+	
+	.container {
+		max-width: none;
+		padding: 0;
+	}
+	
+	.container-sm {
+		max-width: 95%;
+	}
+	
+	/* Navigation Bar */
+	
+	#burger {
+		font-size: 20px; 
+  		color: white;
+  		position: fixed;
+   	right: 0;
+   	top: 15px;
+   	cursor: pointer;
+   	border: none;
+   	outline: none;
+   	background-color: black;
+   	padding: 12px;
+   	border-radius: 50px 0 0 50px;
+   	z-index: 99;
+   	transition: 0.5s;
+	}
+
+	#burger:hover {
+		background-color: #da711e;
+	}
+
+	.second-logo {
+		margin-left: 26px;
+   	margin-top: -60px;
+   	width: 180px
+	}
+
+	.home-navigation {
+ 	 	height: 100%;
+  		position: fixed;
+ 		width: 0;
+  		z-index: 99;
+  		top: 0;
+  		right: 0;
+  		background-color: black;
+  		overflow-x: hidden;
+  		transition: 0.5s;
+  		padding-top: 60px;
+	}
+
+	.home-navigation a {
+  		padding: 8px 25px 8px 25px;
+  		text-decoration: none;
+  		font-size: 22px;
+ 	 	color: white;
+  		display: block;
+  		transition: 0.5s;
+	}
+
+	.home-navigation a:hover {
+  		color: #e4871b;
+	}
+
+	.home-navigation .closebtn {
+  		position: absolute;
+  		top: 0;
+  		right: -5px;
+  		font-size: 36px;
+  		margin-left: 50px;
+	}
+
+	.img-favicon1 {
+		width: 50px;
+		pointer-events: none;
+	}
+
+	.img-favicon2 {
+		width: 50px;
+		pointer-events: none;
+	}
+
+	.text-nav-fav {
+		padding: 8px 20px 8px 25px;
+	}
+
+	.imp-note {
+		color: white;
+		padding: 8px 8px 8px 25px;
+		margin-bottom: -15px;
+		max-width: 275px;
+	}
+
+	/* Page Link Decoration */
+
+	.link-decoration {
+		text-decoration: none; 
+		color: black;
+		transition: 0.5s;
+	}
+
+	.link-decoration:hover {
+		color: #e4871b;
+	}
+
+	/* Page Footer */
+
+	.footer-logo {
+		width: 50px;
+		margin-bottom: 10px;
+		pointer-events: none;
+	}
+	
+	.bar-font {
+		font-family: 'Dancing Script', cursive;
+		font-size: 25px;
+	}
+	
+	/* Footer */
+
+.sc1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #1778F2;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-1 {
+	color: #1778F2;
+	transition: background-color 1s ease;
+}
+
+.sc1:hover {
+  background-color: #1778F2;
+}
+
+.sce-1:hover {
+	color: #ffffff;
+}
+
+.sc2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #DD2A7B;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-2 {
+	color: #DD2A7B;
+	transition: background-color 1s ease;
+}
+
+.sc2:hover {
+  background-color: #DD2A7B;
+}
+
+.sce-2:hover {
+	color: #ffffff;
+}
+
+.sc3 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #E62117;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-3 {
+	color: #E62117;
+	transition: background-color 1s ease;
+}
+
+.sc3:hover {
+  background-color: #E62117;
+}
+
+.sce-3:hover {
+	color: #ffffff;
+}
+
+.sc4 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #0e0e0e;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-4 {
+	color: #0e0e0e;
+	transition: background-color 1s ease;
+}
+
+.sc4:hover {
+  background-color: #0e0e0e;
+}
+
+.sce-4:hover {
+	color: #ffffff;
+}
+
+	/* Error 404 Design*/
+	
+	.table-img {
+		width: 100%;
+		position: relative;
+		background-position: center;
+   	background-repeat: no-repeat;
+   	background-size: cover;
+		pointer-events: none;
+	}	
+	
+	.error-text {
+		font-family: 'Varela Round', sans-serif;
+		font-weight: 900;
+		text-align: center;
+	}
+	
+	.lost-text {
+		font-family: 'Varela Round', sans-serif;
+		font-weight: 900;
+		text-align: center;
+		padding: 15px;
+	}
+	
+	.btn-font {
+		font-family: 'Varela Round', sans-serif;
+		font-weight: 900;
+	}
+	
+	.fundo {
+  		animation: scales 3s alternate infinite;
+  		transform-origin: center;
+	}
+	
+	.pao-baixo {
+   	animation: rotatepao 14s cubic-bezier(.1,.49,.41,.97) infinite;
+  		transform-origin: center;
+	}
+	
+	.pao-cima {
+   	animation: rotatepao 7s 1s cubic-bezier(.1,.49,.41,.97) infinite;
+  		transform-origin: center;
+	}
+	
+	.olhos {
+		animation: olhos 2s alternate infinite;
+   	transform-origin: center;
+	}
+
+	.left-sparks {
+		animation: left-sparks 4s alternate infinite;
+      transform-origin: 150px 156px;
+	}
+
+	.right-sparks {
+		animation: left-sparks 4s alternate infinite;
+      transform-origin: 310px 150px;
+	}
+
+	.olhos {
+		animation: olhos 2s alternate infinite;
+   	transform-origin: center;
+	}
+	
+	@keyframes scales {
+  		from { 
+  			transform: scale(0.98)
+  		}
+  		to { 
+  			transform: scale(1)
+  		}
+	}
+
+	@keyframes rotatepao {
+  		0% { 
+  			transform: rotate(0deg)
+  		}
+  		50%, 60% { 
+  			transform: rotate(-20deg)
+  		}
+  		100% {
+  			transform: rotate(0deg)
+  		}
+	}
+
+	@keyframes olhos {
+  		0% {
+    		transform: rotateX(0deg);
+  		}
+   	100% {
+    		transform: rotateX(30deg);
+  		}
+	}
+
+	@keyframes left-sparks {
+  		0% {
+    		opacity: 0; 
+  		}
+	}
+
+	.main {
+		padding: 5px;
+		min-height: 500px;
+    	margin: 0px auto;
+    	width: auto;
+    	max-width: 460px;
+   	display: flex;
+    	align-items: center;
+    	justify-content: center;
+    	flex-wrap: wrap;
+    	align-content: space-around;
+	}
+
+	.path {
+  		stroke-dasharray: 300;
+  		stroke-dashoffset: 300;
+  		animation: dash 4s alternate infinite;
+	}
+
+	@keyframes dash {
+   	0%, 30% {
+     		fill: 4B4B62;
+    		stroke-dashoffset: 0;
+  		}
+   	80%, 100% {
+     		fill: transparent;
+    		stroke-dashoffset: -200;
+  		}  
+	}
+	
+	/* Scroll Bar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: black; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff7c00; 
+  border: 2px solid black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F47600; 
+  border: 2px solid black;
+}

@@ -1,0 +1,97 @@
+<?php 
+	function isInTimeRange() {
+  		// Get the current time in the user's time zone.
+  		$now = new \DateTime('now', new \DateTimeZone('America/New_York'));
+
+  		// Check if the current time is between 8:00 AM and 9:30 AM in the user's time zone.
+  		return $now->hour >= 8 && $now->hour < 10;
+	}
+
+	@if (isInTimeRange())
+  		// Load the blocker blade.php file.
+  		return view('stop');
+	@endif
+?>
+
+<?php
+	@if (isInTimeRange())
+ 		// Hide the blocker.
+  		return;
+	@endif
+?>
+
+
+<style type="text/css">
+			.msg-allert {
+    			position: fixed;
+    			bottom: 0;
+    			right: 0;
+    			overflow: hidden;
+    			z-index: 999;
+  			}
+
+  			.close-button {
+    			border: none;
+    			background: none;
+    			height: 30px;
+    			width: 30px;
+    			color: white;
+    			transition: 1s;
+  			}
+
+  			.close-button:hover {
+    			color: #e4871b;
+  			}
+
+  			.toast-body {
+    			flex-grow: 1;
+    			padding-right: 20px;
+  			}
+
+  			@media (max-width: 576px) {
+    			.msg-allert {
+     			 	left: 0;
+      			right: 0;
+     				margin: 0 10px;
+      			width: auto;
+      			max-width: 100%;
+      			border-radius: 0;
+      			transform: translateY(0);
+    			}
+
+    			.d-flex {
+      			flex-direction: column;
+    			}
+
+    			.close-button {
+      			margin-top: 0;
+      			margin-right: 0;
+    			}
+  			}
+		</style>
+		
+		<div class="msg-allert mb-2 me-2 animate__animated animate__fadeInUp animate__delay-1s">
+  			<div class="toast align-items-center border-0 rounded-3" role="alert" id="myToast" style="color: white; background-color: black;">
+    			<div class="d-flex" style="justify-content: flex-end; flex-direction: row; flex-wrap: nowrap;">
+      			<div class="toast-body">
+        				<p class="m-auto ps-3 py-2 text-break">La pagina è ancora bloccata, per questo non puoi cliccare sui pulsanti per ordinare. La pagina si aprirà alle 8 AM. Intanto puoi visitare le documentazioni cliccando su ( <i class="fas fa-info-circle icon-info"></i> ) o fare altre azioni cliccando su ( <i class="fas fa-bars icon-menu"></i> ).</p>
+      			</div>
+     				<button type="button" class="close-button mt-2 me-2" data-bs-dismiss="toast" aria-label="Close"><i class="fa-solid fa-xmark fa-2x"></i></button>
+    			</div>
+  			</div>
+		</div>
+		
+		<script type="text/javascript">
+  			document.addEventListener('DOMContentLoaded', function() {
+  				var currentHour = new Date().getHours();
+
+  				if ((currentHour >= 9 && currentHour < 24) || (currentHour >= 0 && currentHour < 8)) {
+    				var toastElement = document.getElementById('myToast');
+    				var toast = new bootstrap.Toast(toastElement, { autohide: false });
+    				toast.show();
+  				} else {
+    				var toastElement = document.getElementById('myToast');
+    				toastElement.style.display = 'none';
+  				}
+			});
+		</script>

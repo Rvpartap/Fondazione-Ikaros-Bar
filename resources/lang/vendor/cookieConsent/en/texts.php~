@@ -1,0 +1,6 @@
+<?php
+
+return [
+    'message' => 'Questo sito utilizza cookie installati da terze parti autorizzate, navigando nel sito o chiudendo questo avviso accetti il nostro uso dei cookie. Clicca sul pulsante per sapere di più.',
+    'agree' => 'Accetto i Cookie',
+];

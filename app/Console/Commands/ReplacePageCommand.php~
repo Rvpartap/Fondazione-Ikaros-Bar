@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+
+class ReplacePageCommand extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'command:name';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        // get the current time
+    	  $now = Carbon::now();
+
+    	  // check if it's between 8:00 AM and 9:00 AM
+    	  if ($now->hour >= 8 && $now->hour < 9) {
+           // replace the page
+        	  Artisan::call('view:publish', ['view' => 'indexordini']);
+    	  } else {
+           // restore the original page
+           Artisan::call('view:publish', ['view' => 'stop']);
+    	  }
+    }
+}

@@ -1,0 +1,18 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Order extends Model
+{
+    protected $fillable = ['data', 'nome', 'classe', 'prodotto', 'prezzo', 'quantity', 'subtotale'];
+}
+
+public static function getGroupedOrders()
+{
+    return self::select('nome', 'classe', DB::raw('GROUP_CONCAT(prodotto, ": ", quantity) as products'), DB::raw('SUM(subtotale) as subtotale'))
+        ->groupBy('nome', 'classe')
+        ->get();
+}
+

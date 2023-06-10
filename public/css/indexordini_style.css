@@ -1,0 +1,385 @@
+/* IndexOrdini.Blade.php CSS */
+
+/* Small Edit */
+
+body {
+	height: auto;
+	width: 100%;
+	cursor: url('/images/Site-Favicons/cursor.cur'), auto;
+}
+
+.container {
+	max-width: none;
+	padding: 0;
+}
+
+.container-sm {
+	max-width: 80%;
+	padding: 0;
+}
+
+.container-md {
+	max-width: 95%;
+	padding: 0;
+	background-color: #ffffff;
+	background-size: 400% 400%;
+}
+
+.container-lg {
+	max-width: 1100px;
+}
+
+.cubes-img {
+	width: 100%;
+	position: relative;
+	background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+	pointer-events: none;
+}
+
+.separate-line {
+	border: solid 1px #e4871b;
+}
+
+.npe {
+	pointer-events: none;
+}
+
+/* Footer */
+
+.sc1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #1778F2;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-1 {
+	color: #1778F2;
+	transition: background-color 1s ease;
+}
+
+.sc1:hover {
+  background-color: #1778F2;
+}
+
+.sce-1:hover {
+	color: #ffffff;
+}
+
+.sc2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #DD2A7B;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-2 {
+	color: #DD2A7B;
+	transition: background-color 1s ease;
+}
+
+.sc2:hover {
+  background-color: #DD2A7B;
+}
+
+.sce-2:hover {
+	color: #ffffff;
+}
+
+.sc3 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #E62117;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-3 {
+	color: #E62117;
+	transition: background-color 1s ease;
+}
+
+.sc3:hover {
+  background-color: #E62117;
+}
+
+.sce-3:hover {
+	color: #ffffff;
+}
+
+.sc4 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #0e0e0e;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-4 {
+	color: #0e0e0e;
+	transition: background-color 1s ease;
+}
+
+.sc4:hover {
+  background-color: #0e0e0e;
+}
+
+.sce-4:hover {
+	color: #ffffff;
+}
+
+/* Nav Bar */
+
+#burger {
+   font-size: 20px; 
+   color: white;
+   position: fixed;
+   right: 0;
+   top: 3%;
+   cursor: pointer;
+   border: none;
+   outline: none;
+   background-color: black;
+   padding: 12px;
+   border-radius: 50px 0 0 50px;
+   z-index: 99;
+   transition: 0.5s;
+}
+
+#burger:hover {
+   background-color: #1C1C1C;
+}
+
+.second-logo {
+	margin-left: 26px;
+   margin-top: -60px;
+   width: 180px
+}
+
+.home-navigation {
+  height: 100%;
+  position: fixed;
+  width: 0;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  background-color: black;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.home-navigation a {
+  padding: 8px 25px 8px 25px;
+  text-decoration: none;
+  font-size: 22px;
+  color: white;
+  display: block;
+  transition: 0.5s;
+}
+
+.home-navigation a:hover {
+  color: #e4871b;
+}
+
+.home-navigation .closebtn {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.img-favicon1 {
+	width: 50px;
+	pointer-events: none;
+}
+
+.img-favicon2 {
+	width: 50px;
+	pointer-events: none;
+}
+
+.text-nav-fav {
+	padding: 8px 20px 8px 25px;
+}
+
+.imp-note {
+	color: white;
+	padding: 8px 8px 8px 25px;
+	margin-bottom: -15px;
+	max-width: 275px;
+}
+
+.nav-m {
+	margin: 8px 8px 8px 25px;
+}
+
+/* Font of the Bar Text */
+
+.bar-font {
+	font-family: 'Dancing Script', cursive;
+	font-size: 25px;
+}
+
+/* Links Decoration */
+
+.link-decoration {
+	text-decoration: none; 
+	color: black;
+	transition: 0.5s;
+}
+
+.link-decoration:hover {
+	color: #e4871b;
+}
+
+/* Footer */
+
+.footer-logo {
+	width: 50px;
+	margin-bottom: 10px;
+	pointer-events: none;
+}
+
+/* Go to Top Button */
+
+#GoTop {
+   display: none;
+   position: fixed;
+   top: 30%;
+   left: -6px;
+   z-index: 77;
+   border: none;
+   outline: none;
+   background-color: black;
+   color: white;
+   cursor: pointer;
+   padding: 15px;
+   border-radius: 0 50px 50px 0;
+   font-size: 18px;
+   transition: 0.5s;
+}
+
+#GoTop:hover {
+   background-color: #1C1C1C;
+}
+
+/* Reload Button */
+
+#reload {
+   position: fixed;
+   top: 40%;
+   left: -5px;
+   z-index: 77;
+   border: none;
+   outline: none;
+   background-color: black;
+   color: white;
+   cursor: pointer;
+   padding: 15px;
+   border-radius: 0 50px 50px 0;
+   font-size: 18px;
+   transition: 0.5s;
+}
+
+#reload:hover {
+   background-color: #1C1C1C;
+}
+
+/* Modal Info */
+
+#info {
+   position: fixed;
+   top: 50%;
+   left: -5px;
+   z-index: 77;
+   border: none;
+   outline: none;
+   background-color: black;
+   color: white;
+   cursor: pointer;
+   padding: 15px;
+   border-radius: 0 50px 50px 0;
+   font-size: 18px;
+   transition: 0.5s;
+}
+
+#info:hover {
+   background-color: #1C1C1C;
+}
+
+.infobox-img {
+	max-width: 120px;
+	border-radius: 5px;
+	pointer-events: none;
+	margin-bottom: 5px;
+}
+
+/* Redirect to checkout */
+
+#gocheckout {
+   position: fixed;
+   top: 60%;
+   left: -8px;
+   z-index: 77;
+   border: none;
+   outline: none;
+   background-color: black;
+   color: white;
+   cursor: pointer;
+   padding: 15px;
+   border-radius: 0 50px 50px 0;
+   font-size: 18px;
+   transition: 0.5s;
+}
+
+#gocheckout:hover {
+   background-color: #1C1C1C;
+}
+
+/* Cart */
+
+.translate-badge {
+    transform: translate(-25%,-25%);
+}
+
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: black; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff7c00; 
+  border: 2px solid black;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F47600; 
+  border: 2px solid black;
+}

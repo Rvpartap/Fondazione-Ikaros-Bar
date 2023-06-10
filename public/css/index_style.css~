@@ -1,0 +1,203 @@
+/* Pagina CSS di Index.Blade.php */
+
+/* Small Edit */
+
+body {
+	height: auto;
+	width: 100%;
+	cursor: url('/images/Site-Favicons/cursor.cur'), auto;
+}
+
+hr {
+	border: solid 1px white;
+}
+
+.container {
+	max-width: none;
+	padding: 0;
+}
+
+.container-sm {
+	max-width: 95%;
+}
+
+.container-md {
+	max-width: 90%;
+}
+
+.table-img {
+	width: 100%;
+	position: relative;
+	background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+	pointer-events: none;
+}
+
+/* Go to Top Button */
+
+#GoTop {
+   display: none;
+   position: fixed;
+   top: 50%;
+   left: 0;
+   z-index: 88;
+   border: none;
+   outline: none;
+   background-color: black;
+   color: white;
+   cursor: pointer;
+   padding: 15px;
+   border-radius: 0 50px 50px 0;
+   font-size: 18px;
+   transition: 0.5s;
+}
+
+#GoTop:hover {
+   background-color: #1C1C1C;
+}
+
+/* Font of the Bar Text */
+
+.bar-font {
+	font-family: 'Dancing Script', cursive;
+	font-size: 25px;
+}
+
+/* Links Decoration */
+
+.link-decoration {
+	text-decoration: none; 
+	color: black;
+	transition: 0.5s;
+}
+
+.link-decoration:hover {
+	color: #e4871b;
+}
+
+/* Footer */
+
+.footer-logo {
+	width: 50px;
+	margin-bottom: 10px;
+	pointer-events: none;
+}
+
+.sc1 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #1778F2;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-1 {
+	color: #1778F2;
+	transition: background-color 1s ease;
+}
+
+.sc1:hover {
+  background-color: #1778F2;
+}
+
+.sce-1:hover {
+	color: #ffffff;
+}
+
+.sc2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #DD2A7B;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-2 {
+	color: #DD2A7B;
+	transition: background-color 1s ease;
+}
+
+.sc2:hover {
+  background-color: #DD2A7B;
+}
+
+.sce-2:hover {
+	color: #ffffff;
+}
+
+.sc3 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #E62117;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-3 {
+	color: #E62117;
+	transition: background-color 1s ease;
+}
+
+.sc3:hover {
+  background-color: #E62117;
+}
+
+.sce-3:hover {
+	color: #ffffff;
+}
+
+.sc4 {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid #0e0e0e;
+  background-color: transparent; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 1s ease;
+}
+
+.sce-4 {
+	color: #0e0e0e;
+	transition: background-color 1s ease;
+}
+
+.sc4:hover {
+  background-color: #0e0e0e;
+}
+
+.sce-4:hover {
+	color: #ffffff;
+}
+
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: black; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e4871b; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #da711e; 
+}
