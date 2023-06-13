@@ -151,16 +151,8 @@
     		<br>
     		<div class="animate__animated animate__fadeIn animate__delay-1s align-items-center my-4">
         		<div class="row">
-            	<div class="col-md-6 mb-3 ps-3 pe-3">
-                	<h2 class="justify-content-start float-start" style="margin-left: 4px;"><i class="fa-solid fa-list"></i>&#160; <strong>Lista dei prodotti</strong></h2>
-            	</div>
-            	<div class="col-md-6 mb-3 ps-3 pe-3">
-                	<div class="justify-content-end">
-                    	<div class="input-group has-validation">
-                        <span class="input-group-text bg-dark text-white border border-0" style="border-radius: 2rem 0rem 0rem 2rem;"><i class="fa-solid fa-magnifying-glass fa-lg mx-1"></i></span>
-                        <input type="text" class="form-control" id="searchBox" placeholder="Cerca il tuo prodotto..." style="border-radius: 0rem 2rem 2rem 0rem;" />
-                    	</div>
-                	</div>
+            	<div class="col-md-12 mb-3 ps-3 pe-3">
+                	<h2 class="justify-content-start float-start fw-bold" style="margin-left: 4px;"><i class="fa-solid fa-list"></i>&#160; Lista dei prodotti</h2>
             	</div>
         		</div>
     		</div>
@@ -487,49 +479,6 @@
 			window.addEventListener("focus", () => {
 				document.title = docTitle;
 			});
-			
-			//////////////////////////////////////////////////////////////////////////////
-			
-			const searchBox = document.getElementById('searchBox');
-			const cardsContainer = document.getElementById('cardsContainer');
-			const prodotti = JSON.parse('{!! json_encode($prodotti) !!}');
-
-			searchBox.addEventListener('input', function() {
-    			const searchTerm = searchBox.value.toLowerCase();
-    			const filteredProdotti = prodotti.filter(prodotto => prodotto.nome_prod.toLowerCase().includes(searchTerm));
-    			displayCards(filteredProdotti);
-			});
-
-			function displayCards(prodotti) {
-    			cardsContainer.innerHTML = '';
-
-    			if (prodotti.length === 0) {
-        			const noResultsMessage = document.createElement('p');
-        			noResultsMessage.textContent = '🤷 Nessun risultato trovato.';
-        			cardsContainer.appendChild(noResultsMessage);
-    			} else {
-        			prodotti.forEach(prodotto => {
-            		const card = document.createElement('div');
-            		card.classList.add('col-sm-6', 'col-lg-4', 'p-3');
-            		card.innerHTML = `
-                		<div class="card rounded-5 shadow-lg">
-                    		<img src="${prodotto.url_img}" class="card-img-top" style="border-radius: 2rem 2rem 0 0; pointer-events: none;" alt="${prodotto.nome_prod}">
-                    		<div class="card-body">
-                        	<h4 class="card-title">${prodotto.nome_prod}</h4>
-                        	<p class="card-text h5">Prezzo: &#160;€ ${prodotto.prezzo}</p>
-                        	<hr style="margin: 14px 0 16px 0">
-                        	<div class="d-grid gap-2">
-                            	<button class="btn btn-primary btn-lg rounded-5 goodButton" style="--bs-btn-font-size: 1.05rem;" onclick="location.href='${{ route('add.to.cart', $prodotto->id) }}'" role="button" type="submit"><i class="fa-solid fa-cart-shopping"></i> &#160; Aggiungi al Carrello</button>
-                        	</div>
-                    		</div>
-                		</div>
-            		`;
-            		cardsContainer.appendChild(card);
-        			});
-    			}
-			}
-
-			displayCards(prodotti);
 		</script> 	
  	</body>
 </html>   
